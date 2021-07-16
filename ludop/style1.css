@@ -1,0 +1,14 @@
+*{margin:0px;padding:0px;border:0px}
+body{font-size:36px; font-family:Oswald;}
+table, tr, td{border:1px solid black;}
+.teama{color:#FF019A;}
+.teamb{color:#00FEFC;}
+.board{padding-left:400px;}
+.pawns{
+            width:60px;
+            height:60px;
+            border-radius:60px;
+            position:absolute;
+        }
+.home{float:left; padding-top:210px;}
+.redl{padding-top:106.67px;}

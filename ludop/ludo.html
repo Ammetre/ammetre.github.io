@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<TITLE>
+LUDO
+</TITLE>
+<link rel="stylesheet" type="text/css" href="style1.css">
+<script src="ludo.js"></script>
+</HEAD>
+<BODY>
+<div class="pawns" id="redpawn1"    onclick="randomMove('red',1)"       style="background-color:#800000;top:113px;left:8px;"></div>
+<div class="pawns" id="redpawn2"    onclick="randomMove('red',2)"       style="background-color:#800000;top:113px;left:78px;"></div>
+<div class="pawns" id="bluepawn1"   onclick="randomMove('blue',1)"      style="background-color:#000080;top:750px;left:8px;"></div>
+<div class="pawns" id="bluepawn2"   onclick="randomMove('blue',2)"      style="background-color:#000080;top:750px;left:78px;"></div>
+<!--<div class="teama">Locker for A<br>2 A</div>-->
+<div class="redl"><img src="Images/locker.png"></div>
+<!--<div class="home"><img src="Images/home.png"></div>-->
+<div id="dice" onclick="randomNum()" style="background-image:url(Images/dice.gif);background-size:contain; width:150px;height:150px; float:left; margin-top:140px;"><br><br><br><h4 id="uselesstext1">It`s </h4><h3 id="player" style="float:left; color:red">red</h3><h4 id="uselesstext2">s turn</h4>
+    <p id="badtext" style="float:left;"></p></div>
+<div class="board"><img src="Images/Board.png">
+</div>
+<div class="bluel"><img src="Images/locker.png"></div>
+<!--<div class="teamb">
+Locker for B<br>2 B</div>-->
+<!--<div class="roll"><center>
+<table><tr><td>TURN Player A</td></tr>
+<tr><td bgcolor="#AAAAAA">ROLL !</td></tr>
+<tr><td></td></tr></table>
+</center></div>-->
+</BODY>
+</HTML>
