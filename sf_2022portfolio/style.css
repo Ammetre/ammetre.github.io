@@ -81,6 +81,7 @@ animation-iteration-count:infinite;}
 .bottom ul{padding-left:40px}
 .bottom a{color:rgb(229,229,229);text-decoration:none;cursor:default;}
 .top p span{font-size:72px;color:rgb(102,153,204)}
+.top p st{text-decoration:line-through}
 .acaddesc{font-family:Oxygen;padding:20px 30px 20px 30px;font-size:48px;}
 .para{font-family:Noto Sans TC; padding:20px; text-align:right;}
 .para span{margin:20px 10px 20px 30px;color:rgb(178,204,230);font-family:Oxygen;font-size:48px;font-weight:700;}
