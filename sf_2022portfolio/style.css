@@ -78,6 +78,7 @@ animation-iteration-count:infinite;}
 	90%{transform:rotate(-5.868rad);}
 	100%{transform:rotate(-6.283rad);}
 }
+.bottom{padding-left:5px}
 .bottom a{color:rgb(229,229,229);text-decoration:none;cursor:default;}
 .top p span{font-size:72px;color:rgb(102,153,204)}
 .acaddesc{font-family:Oxygen;padding:20px 30px 20px 30px;font-size:48px;}
