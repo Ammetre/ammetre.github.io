@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Aritra Mitra — Academic Site</title>
+  <style>
+    body {
+      font-family: 'IBM Plex Serif', serif;
+    }
+    :root {
+      --accent: #6e4224;
+      --bg-light: #f8f8f8;
+      --bg-dark: #121212;
+      --text-light: #000;
+      --text-dark: #fff;
+      --header-light: #6e4224;
+      --header-dark: #372112;
+      --toggle-sun: radial-gradient(circle at center, #FFD700 60%, #FFA500 100%);
+      --toggle-bg-light: #20a6db;
+      --toggle-bg-dark: #2E2E2E;
+    }
+
+    body[data-theme="light"] {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body[data-theme="dark"] {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body {
+      margin: 0;
+      /* font-family: 'Inter', sans-serif; */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--header-light);
+      color: white;
+      transition: background-color 0.4s;
+    }
+
+    body[data-theme="dark"] header {
+      background-color: var(--header-dark);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    .theme-container {
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+    }
+
+    .theme-toggle {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .switch {
+      display: inline-block;
+      width: 60px;
+      height: 32px;
+      background-color: var(--toggle-bg-light);
+      border-radius: 32px;
+      position: relative;
+      transition: background-color 0.4s;
+    }
+
+    .switch::after {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 4px;
+      left: 4px;
+      background: var(--toggle-sun);
+      border-radius: 50%;
+      transition: transform 0.4s, background 0.4s;
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    input[type="checkbox"]:checked + .switch {
+      background-color: var(--toggle-bg-dark);
+    }
+
+    input[type="checkbox"]:checked + .switch::after {
+      transform: translateX(28px);
+      background: #fff;
+      /* box-shadow: -4px 0 0 0 #121212; */
+      /* clip-path: circle(50% at 60% 50%); */
+    }
+
+    .toggle-text {
+      margin-left: 0.5rem;
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+    }
+
+    .theme-container:hover .toggle-text {
+      opacity: 1;
+    }
+
+    section {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h2 {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <header>
+    <div class="title">Aritra Mitra</div>
+    <div style="display:flex; align-items:center;">
+      <nav>
+        <a href="../pers/">Personal</a>
+        <a href="./index.html" style = "border-bottom: 3px solid #fff; pointer-events:none;">Academic</a>
+        <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a>
+      </nav>
+      <div class="theme-container">
+        <input type="checkbox" id="theme-switch" />
+        <label for="theme-switch" class="switch"></label>
+        <span class="toggle-text">Switch to Dark Mode</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="education">
+    <h2>Education</h2>
+    <p><strong>Master’s and Bechelor's (Integrated) Program</strong> — Indian Institute of Technology Kharagpur, 2020-2025<br />
+      B.Tech.-M.Tech. (Dual-Degree) in Computer Science and Engineering</p>
+    <p><strong>Higher Secondary</strong> — Behala Aryya Vidyamandir, 2020</p>
+    <p><strong>Secondary</strong> — Behala Aryya Vidyamandir, 2018</p>
+  </section>
+  <section id="internships">
+    <h2>Internships</h2>
+    <ul>
+      <li><strong>Summer Research Fellow</strong>, <em>BrAIN Research Group, Max Planck Institute for Software Systems</em>, Saarbrücken, Germany <br />
+        <strong>Supervisor:</strong> Prof. Mariya Toneva<br/>
+        <strong>Duration:</strong> May 2023 - August 2023
+        <ul>
+          <li>
+            Created a <em>web-based quiz platform</em> to collect data from individuals, which is then used to deduce remembrance patterns in humans as compared to LLMs.
+          </li>
+        </ul>
+      </li>
+      <br/>
+      <li><strong>Systems Intern</strong>, <em>QE Securities Private Limited</em>, Gurugram, India<br />
+        <!-- <strong>Supervisor:</strong> Prof. Mariya Toneva<br/> -->
+        <strong>Duration:</strong> May 2024 - July 2024
+        <ul>
+          <li>
+            Optimized the time taken to read and decompress market data from exchanges, which are used to test strategies for high-frequency trading, using C libraries aio and io_uring, and hardware-level optimizations, for single-threaded as well as multi-threaded cases.
+          </li>
+        </ul>
+      </li>
+      <br/>
+      <li><strong>Research Intern</strong>, <em>Indian Institute of Technology Kharagpur</em>, India<br />
+        <strong>Supervisor:</strong> Prof. Parth Pratim Das<br/>
+        <strong>Sponsor:</strong> Ministry of Education, Government of India<br/>
+        <strong>Duration:</strong> May 2022 - July 2022
+        <ul>
+          <li>
+            Created a web application for course management, with access control systems to manage multiple device logins, integrated IDE for coding exercises, and data collection from the IDE to classify mistakes by learners
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <ul>
+      <li><strong>Exploring Usefulness of C Comments with Silver-Standard Machine Learning Models</strong> — Aritra Mitra, <em>Forum for Information Retrieval Evaluation (FIRE)</em>, 2024.</li>
+      <li><strong>Assessing the Utility of C Comments with SVM and Naïve Bayes Classifier</strong> — Aritra Mitra, <em>Forum for Information Retrieval Evaluation (FIRE)</em>, 2023.</li>
+    </ul>
+  </section>
+
+  <!-- <section id="manuscripts">
+    <h2>Manuscripts</h2>
+    <ul>
+      <li>Aritra Mitra, Srijoni Majumdar, Anamitra Mukhopadhyay, Partha Pratim Das, <strong>Leveraging Design-Aware Context in Large Language Models for Code Comment Generation</strong></li>
+    </ul>
+  </section> -->
+
+  <footer>
+    &copy; 2025 Aritra Mitra
+  </footer>
+
+  <script>
+    function setTheme(theme) {
+      document.body.dataset.theme = theme;
+      localStorage.setItem('theme', theme);
+      document.getElementById('theme-switch').checked = (theme === 'dark');
+      document.querySelector('.toggle-text').textContent = theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+    }
+
+    function toggleTheme() {
+      const current = document.body.dataset.theme;
+      setTheme(current === 'light' ? 'dark' : 'light');
+    }
+
+    window.onload = () => {
+      const saved = localStorage.getItem('theme') || 'light';
+      setTheme(saved);
+      document.getElementById('theme-switch').addEventListener('change', toggleTheme);
+    };
+  </script>
+</body>
+</html>

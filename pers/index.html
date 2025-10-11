@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Aritra Mitra — Personal Site</title>
+  <style>
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+    :root {
+      --accent: #009696;
+      --bg-light: #f8f8f8;
+      --bg-dark: #121212;
+      --text-light: #000;
+      --text-dark: #fff;
+      --header-light: #009696;
+      --header-dark: #004a4a;
+      --toggle-sun: radial-gradient(circle at center, #FFD700 60%, #FFA500 100%);
+      --toggle-bg-light: #20a6db;
+      --toggle-bg-dark: #2E2E2E;
+    }
+
+    body[data-theme="light"] {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body[data-theme="dark"] {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body {
+      margin: 0;
+      /* font-family: 'Inter', sans-serif; */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--header-light);
+      color: white;
+      transition: background-color 0.4s;
+    }
+
+    body[data-theme="dark"] header {
+      background-color: var(--header-dark);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    .theme-container {
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+    }
+
+    .theme-toggle {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .switch {
+      display: inline-block;
+      width: 60px;
+      height: 32px;
+      background-color: var(--toggle-bg-light);
+      border-radius: 32px;
+      position: relative;
+      transition: background-color 0.4s;
+    }
+
+    .switch::after {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 4px;
+      left: 4px;
+      background: var(--toggle-sun);
+      border-radius: 50%;
+      transition: transform 0.4s, background 0.4s;
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    input[type="checkbox"]:checked + .switch {
+      background-color: var(--toggle-bg-dark);
+    }
+
+    input[type="checkbox"]:checked + .switch::after {
+      transform: translateX(28px);
+      background:#fff;
+      /* box-shadow: -4px 0 0 0 #121212; */
+      /* clip-path: circle(50% at 60% 50%); */
+    }
+
+    .toggle-text {
+      margin-left: 0.5rem;
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+    }
+
+    .theme-container:hover .toggle-text {
+      opacity: 1;
+    }
+
+    section {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h2 {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <header>
+    <div class="title">Aritra Mitra</div>
+    <div style="display:flex; align-items:center;">
+      <nav>
+        <a href="./index.html" style = "border-bottom: 3px solid #fff; pointer-events:none;">Personal</a>
+        <a href="../acad/">Academic</a>
+        <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a>
+      </nav>
+      <div class="theme-container">
+        <input type="checkbox" id="theme-switch" />
+        <label for="theme-switch" class="switch"></label>
+        <span class="toggle-text">Switch to Dark Mode</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Well hello there!</p>
+    <p>I'm Aritra Mitra. My journey in computer science began with a fascination for problem-solving and a curiosity about how things work behind the scenes. Over the years, this curiosity has blossomed into a passion for coding and technology. I first stumbled onto Computer Science in Class 11. I did not want to take Biology, and the only other option that my school provided was Computer Science. Well, I took that gamble, and it was a good one to take! I loved the subject a lot, and wanted to pursue it for further education. After clearing JEE Advanced, I wanted to pursue an Integrated M.Tech., as I wanted to pursue further academic prowess anyway. So, I enrolled into the B.Tech.-M.Tech. (Dual-Degree) programme in Computer Science and Engineering at Indian Institute of Technology Kharagpur. The years on campus were very fun, even though the first two years of college was online due to the COVID-19 pandemic. I made a lot of good friends in college, and really enjoyed the stay. Now, I am applying for PhD positions, as I would like to become a researcher.</p>
+    <p>Beyond academics, I have a deep love for music, having trained in Indian classical music for several years. I also enjoy traveling, exploring new places, and immersing myself in different cultures. Literature is another passion of mine; I enjoy reading and writing, particularly in my native language, Bengali.</p>
+    <p>This personal site is a space where I share my interests, hobbies, and a bit about my life outside of academics. Feel free to explore and get to know me better!</p>
+  </section>
+
+  <section id="hobbies">
+    <h2>Hobbies</h2>
+    <ul>
+      <li><strong>🎵 Music:</strong> I have been trained in Indian classical music for 7 years. I can sing, and also play the harmonium. Jamming sessions were a regular occurrence in my college friend group, especially in the nights. The vast majority of my playlist is in Bangla, and I have been listening to the band Chandrabindoo a lot recently.</li><br/>
+      <li><strong>✈️ Travel:</strong> I like to roam around. Solo traveling, family trips, getaways with friends— I've done all of them! I have toured a lot of places in India, and during my stay in Saarbrücken, I went to Paris, Strasbourg and Heidelberg. It is a bit difficult to pinpoint one trip that I loved the most, but the most beautiful scenes were probably in the city of Strasbourg, especially in the Petit France area, with the stream of water flowing by the old Alsatian houses. The most fun is probably the beach vacation with my collegemates at Tajpur, and the most refreshing trip was to the stony shores and serene scenes of Puducherry.</li><br/>
+      <li><strong>🖊️ Literature:</strong> I dabble a bit into writing, although I stick to my native tongue, Bangla. I have written short stories, poems, and a theatrical adaptation as well. I am currently writing an adaptation of a video game plot into a novel. A lot of these works are collaborative, with my friend Anamitra Mukhopadhyay. Long nights in college do provide a lot of literary motivation, huh!</li><br/>
+      <li><strong>📖 Reading:</strong> Well, I do read a fair amount, even though it is mostly children's literature and young adult books. Most of what I read is, again, in my native tongue, Bangla. I mean, this one does not come as a surprise, especially when I have spent my childhood in the place where the great works of Rabindranath Tagore were produced.</li><br/>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2025 Aritra Mitra
+  </footer>
+
+  <script>
+    function setTheme(theme) {
+      document.body.dataset.theme = theme;
+      localStorage.setItem('theme', theme);
+      document.getElementById('theme-switch').checked = (theme === 'dark');
+      document.querySelector('.toggle-text').textContent = theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+    }
+
+    function toggleTheme() {
+      const current = document.body.dataset.theme;
+      setTheme(current === 'light' ? 'dark' : 'light');
+    }
+
+    window.onload = () => {
+      const saved = localStorage.getItem('theme') || 'light';
+      setTheme(saved);
+      document.getElementById('theme-switch').addEventListener('change', toggleTheme);
+    };
+  </script>
+</body>
+</html>

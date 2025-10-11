@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=./acad/">
+  <script>
+    // JavaScript fallback redirect
+    window.location.href = "./acad/";
+  </script>
+  <title>Redirecting...</title>
+</head>
+<body>
+  <p>If you are not redirected automatically, <a href="./acad/">click here to go to the Academic Site</a>.</p>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ammetre.github.io — Personal & Academic Sites</title>
+  <style>
+    :root {
+      --teal: #009688;
+      --gray-teal: #7a7a7a;
+      --bg-light: #f8f8f8;
+      --bg-dark: #121212;
+      --text-light: #000;
+      --text-dark: #fff;
+    }
+
+    body[data-theme="light"] {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body[data-theme="dark"] {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    section {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+
+    /* Theme toggle switch */
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+    }
+
+    .switch {
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+      background-color: var(--toggle-bg, #ccc);
+      border-radius: 26px;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .switch::after {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      top: 2px;
+      left: 2px;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    input[type="checkbox"]:checked + .switch {
+      background-color: var(--toggle-active, var(--teal));
+    }
+
+    input[type="checkbox"]:checked + .switch::after {
+      transform: translateX(24px);
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="theme-toggle">
+    <input type="checkbox" id="theme-switch" />
+    <label for="theme-switch" class="switch"></label>
+  </div>
+
+  <header>
+    <h1>Welcome to Aritra Mitra’s Space</h1>
+    <p>Choose a section to explore:</p>
+  </header>
+
+  <nav>
+    <a href="./pers/">Personal</a>
+    <a href="./acad/">Academic</a>
+    <a href="./prof/" style="opacity:0.5; pointer-events:none;">Professional (coming soon)</a>
+  </nav>
+
+  <section>
+    <p>This homepage will redirect to the Academic site by default.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Aritra Mitra — All Rights Reserved
+  </footer>
+
+  <script>
+    function setTheme(theme) {
+      document.body.dataset.theme = theme;
+      localStorage.setItem('theme', theme);
+      document.getElementById('theme-switch').checked = (theme === 'dark');
+    }
+
+    function toggleTheme() {
+      const current = document.body.dataset.theme;
+      setTheme(current === 'light' ? 'dark' : 'light');
+    }
+
+    window.onload = () => {
+      const saved = localStorage.getItem('theme') || 'light';
+      setTheme(saved);
+      document.getElementById('theme-switch').addEventListener('change', toggleTheme);
+      // Redirect automatically to academic site
+      window.location.href = './acad/';
+    };
+  </script>
+</body>
+</html>
+
+
+
+
+<section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <img src="https://via.placeholder.com/400x250?text=Photo+1" alt="Photo 1">
+        <img src="https://via.placeholder.com/400x250?text=Photo+2" alt="Photo 2">
+        <img src="https://via.placeholder.com/400x250?text=Photo+3" alt="Photo 3">
+      </div>
+    </section>
