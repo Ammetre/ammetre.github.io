@@ -8,6 +8,8 @@
   <style>
     body {
       font-family: 'IBM Plex Serif', serif;
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
     }
     :root {
       --accent: #6e4224;
@@ -32,12 +34,6 @@
       color: var(--text-dark);
     }
 
-    body {
-      margin: 0;
-      /* font-family: 'Inter', sans-serif; */
-      transition: background-color 0.3s, color 0.3s;
-    }
-
     header {
       display: flex;
       justify-content: space-between;
@@ -45,6 +41,7 @@
       padding: 1rem 2rem;
       background-color: var(--header-light);
       color: white;
+      position: relative;
       transition: background-color 0.4s;
     }
 
@@ -64,92 +61,124 @@
       font-weight: 600;
     }
 
-    .theme-container {
-      display: flex;
+    .theme-container { display:flex; align-items:center; margin-left:1rem; }
+    .switch { display:inline-block; width:60px; height:32px; border-radius:32px; position:relative; background:var(--toggle-bg-light); transition:background .4s;}
+    .switch::after { content:""; position:absolute; width:24px; height:24px; top:4px; left:4px; background:var(--toggle-sun); border-radius:50%; transition:transform .4s, background .4s; }
+    input[type="checkbox"]{display:none;}
+    input[type="checkbox"]:checked + .switch { background: var(--toggle-bg-dark); }
+    input[type="checkbox"]:checked + .switch::after { transform: translateX(28px); background:#fff; }
+
+    .toggle-text { margin-left:0.5rem; font-size:0.85rem; opacity:0; transition:opacity .3s; white-space:nowrap; }
+    .theme-container:hover .toggle-text { opacity:1; }
+
+    /* hamburger now a normal inline item (no z-index tricks) */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      width: 28px;
+      height: 20px;
+      justify-content: center;
       align-items: center;
-      margin-left: 1rem;
     }
 
-    .theme-toggle {
-      position: relative;
+    .hamburger .bar {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+
+    .hamburger.active .bar1 { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active .bar2 { opacity: 0; }
+    .hamburger.active .bar3 { transform: rotate(-45deg) translate(6px, -6px); }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 66%;
+      height: 100%;
+      background-color: var(--header-light);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      transition: left 0.32s ease;
+      z-index: 1001;
+    }
+
+    body[data-theme="dark"] .mobile-nav { background-color: var(--header-dark); }
+    .mobile-nav.active { left: 0; }
+
+    .close-hamburger {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      align-items: center;
+      width: 28px;
+      height: 20px;
       cursor: pointer;
     }
 
-    .switch {
-      display: inline-block;
-      width: 60px;
-      height: 32px;
-      background-color: var(--toggle-bg-light);
-      border-radius: 32px;
-      position: relative;
-      transition: background-color 0.4s;
+    .close-hamburger .bar {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease;
     }
 
-    .switch::after {
-      content: "";
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      top: 4px;
-      left: 4px;
-      background: var(--toggle-sun);
-      border-radius: 50%;
-      transition: transform 0.4s, background 0.4s;
+    .close-hamburger.active .bar1 { transform: rotate(45deg) translate(5px, 5px); }
+    .close-hamburger.active .bar2 { opacity: 0; }
+    .close-hamburger.active .bar3 { transform: rotate(-45deg) translate(6px, -6px); }
+
+    .mobile-nav h2 { margin-top: 3rem; border-bottom:2px solid white; padding-bottom:.5rem; }
+    .mobile-nav a { color:white; text-decoration:none; font-weight:600; margin:1rem 0; border-bottom:3px solid transparent; }
+    .mobile-nav a.active { border-bottom:3px solid white; pointer-events:none; }
+
+    .overlay {
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background-color: rgba(0,0,0,0.5);
+      opacity:0; visibility:hidden; transition:opacity .3s ease;
+      z-index:1000;
     }
 
-    input[type="checkbox"] {
-      display: none;
-    }
+    .overlay.active { opacity:1; visibility:visible; }
 
-    input[type="checkbox"]:checked + .switch {
-      background-color: var(--toggle-bg-dark);
-    }
+    section { max-width:800px; margin:auto; padding:2rem; }
+    h2 { border-bottom:2px solid var(--accent); padding-bottom:0.5rem; }
+    footer { text-align:center; padding:1rem; font-size:0.9rem; opacity:0.6; }
 
-    input[type="checkbox"]:checked + .switch::after {
-      transform: translateX(28px);
-      background: #fff;
-      /* box-shadow: -4px 0 0 0 #121212; */
-      /* clip-path: circle(50% at 60% 50%); */
-    }
-
-    .toggle-text {
-      margin-left: 0.5rem;
-      font-size: 0.85rem;
-      opacity: 0;
-      transition: opacity 0.3s;
-      white-space: nowrap;
-    }
-
-    .theme-container:hover .toggle-text {
-      opacity: 1;
-    }
-
-    section {
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    h2 {
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 0.5rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      opacity: 0.6;
+    @media (max-width: 768px) {
+      nav { display:none; }
+      .hamburger { display:flex; }
+      .theme-container .toggle-text { display:none; }
     }
   </style>
 </head>
 <body data-theme="light">
   <header>
-    <div class="title">Aritra Mitra</div>
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <div class="hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+      </div>
+      <div class="title">Aritra Mitra</div>
+    </div>
+
     <div style="display:flex; align-items:center;">
       <nav>
-        <a href="../pers/">Personal</a>
-        <a href="./index.html" style = "border-bottom: 3px solid #fff; pointer-events:none;">Academic</a>
+        <a href="../pers">Personal</a>
+        <a href="./index.html" style="border-bottom: 3px solid #fff; pointer-events:none;">Academic</a>
         <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a>
       </nav>
       <div class="theme-container">
@@ -159,6 +188,21 @@
       </div>
     </div>
   </header>
+
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <div class="close-hamburger" id="closeHamburger" aria-label="Close menu" role="button" tabindex="0">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+      <div class="bar bar3"></div>
+    </div>
+
+    <h2>Aritra Mitra</h2>
+    <a href="../pers">Personal</a>
+    <a href="./index.html"  class="active">Academic</a>
+    <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a>
+  </div>
+
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
 
   <section id="education">
     <h2>Education</h2>
@@ -181,7 +225,6 @@
       </li>
       <br/>
       <li><strong>Systems Intern</strong>, <em>QE Securities Private Limited</em>, Gurugram, India<br />
-        <!-- <strong>Supervisor:</strong> Prof. Mariya Toneva<br/> -->
         <strong>Duration:</strong> May 2024 - July 2024
         <ul>
           <li>
@@ -239,6 +282,35 @@
       const saved = localStorage.getItem('theme') || 'light';
       setTheme(saved);
       document.getElementById('theme-switch').addEventListener('change', toggleTheme);
+
+      const hamburger = document.getElementById('hamburger');
+      const closeHamburger = document.getElementById('closeHamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('overlay');
+
+      function openMenu() {
+        hamburger.classList.add('active');
+        closeHamburger.classList.add('active');
+        mobileNav.classList.add('active');
+        overlay.classList.add('active');
+        mobileNav.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeMenu() {
+        hamburger.classList.remove('active');
+        closeHamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        overlay.classList.remove('active');
+        mobileNav.setAttribute('aria-hidden', 'true');
+      }
+
+      hamburger.addEventListener('click', () => {
+        mobileNav.classList.contains('active') ? closeMenu() : openMenu();
+      });
+      hamburger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); hamburger.click(); } });
+      closeHamburger.addEventListener('click', closeMenu);
+      closeHamburger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); closeMenu(); } });
+      overlay.addEventListener('click', closeMenu);
     };
   </script>
 </body>
