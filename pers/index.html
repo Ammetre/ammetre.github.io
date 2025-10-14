@@ -1,296 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <title>Aritra Mitra — Personal Site</title>
-  <style>
-    body {
-      font-family: 'IBM Plex Sans', sans-serif;
-      margin: 0;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    :root {
-      --accent: #009696;
-      --bg-light: #f8f8f8;
-      --bg-dark: #121212;
-      --text-light: #000;
-      --text-dark: #fff;
-      --header-light: #009696;
-      --header-dark: #004a4a;
-      --toggle-sun: radial-gradient(circle at center, #FFD700 60%, #FFA500 100%);
-      --toggle-bg-light: #20a6db;
-      --toggle-bg-dark: #2E2E2E;
-    }
-
-    body[data-theme="light"] {
-      background-color: var(--bg-light);
-      color: var(--text-light);
-    }
-
-    body[data-theme="dark"] {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
-
-    /* Header */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: var(--header-light);
-      color: white;
-      position: relative;
-      z-index: 1; /* Navbar stays behind mobile-nav */
-      transition: background-color 0.4s;
-    }
-
-    body[data-theme="dark"] header {
-      background-color: var(--header-dark);
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: inherit;
-      font-weight: 600;
-    }
-
-    /* Theme toggle (unchanged) */
-    .theme-container { display:flex; align-items:center; margin-left:1rem; }
-    .switch { display:inline-block; width:60px; height:32px; border-radius:32px; position:relative; background:var(--toggle-bg-light); transition:background .4s;}
-    .switch::after { content:""; position:absolute; width:24px; height:24px; top:4px; left:4px; background:var(--toggle-sun); border-radius:50%; transition:transform .4s, background .4s; }
-    input[type="checkbox"]{display:none;}
-    input[type="checkbox"]:checked + .switch { background: var(--toggle-bg-dark); }
-    input[type="checkbox"]:checked + .switch::after { transform: translateX(28px); background:#fff; }
-
-    .toggle-text { margin-left:0.5rem; font-size:0.85rem; opacity:0; transition:opacity .3s; white-space:nowrap; }
-    .theme-container:hover .toggle-text { opacity:1; }
-
-    /* Left hamburger (page control) */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-      width: 28px;
-      height: 20px;
-      justify-content: center;
-      align-items: center;
-    }
-    .hamburger .bar {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      border-radius: 2px;
-      transition: transform .3s ease, opacity .3s ease;
-    }
-    .hamburger.active .bar1 { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.active .bar2 { opacity: 0; }
-    .hamburger.active .bar3 { transform: rotate(-45deg) translate(6px, -6px); }
-
-    /* Sidebar (slides in) */
-    .mobile-nav {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      width: 66%;
-      height: 100%;
-      background-color: var(--header-light);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      padding: 2rem;
-      transition: left 0.32s ease;
-      z-index: 1001; /* above header but below hamburger (hamburger z-index 2002) */
-    }
-    body[data-theme="dark"] .mobile-nav { background-color: var(--header-dark); }
-    .mobile-nav.active { left: 0; }
-
-    /* Close-hamburger inside sidebar (looks identical to left hamburger) */
-    .close-hamburger {
-      position: absolute;
-      top: 1rem;
-      right: 1.25rem;
-      display: none; /* only show on small screens */
-      width: 28px;
-      height: 20px;
-      cursor: pointer;
-      z-index: 1100; /* inside sidebar but above its content */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      align-items: center;
-    }
-    .close-hamburger .bar {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      border-radius: 2px;
-      transition: transform .3s ease, opacity .3s ease;
-    }
-    /* when sidebar is open, the close-hamburger gets .active to become X */
-    .close-hamburger.active .bar1 { transform: rotate(45deg) translate(5px, 5px); }
-    .close-hamburger.active .bar2 { opacity: 0; }
-    .close-hamburger.active .bar3 { transform: rotate(-45deg) translate(6px, -6px); }
-
-    .mobile-nav h2 { margin-top: 3rem; border-bottom:2px solid white; padding-bottom:.5rem; }
-    .mobile-nav a { color:white; text-decoration:none; font-weight:600; margin:1rem 0; border-bottom:3px solid transparent; }
-    .mobile-nav a.active { border-bottom:3px solid white; pointer-events:none; }
-
-    /* overlay dims background */
-    .overlay {
-      position: fixed;
-      top:0; left:0; width:100%; height:100%;
-      background-color: rgba(0,0,0,0.5);
-      opacity:0; visibility:hidden; transition:opacity .3s ease;
-      z-index:1000;
-    }
-    .overlay.active { opacity:1; visibility:visible; }
-
-    /* content */
-    section { max-width:800px; margin:auto; padding:2rem; }
-    h2 { border-bottom:2px solid var(--accent); padding-bottom:0.5rem; }
-    footer { text-align:center; padding:1rem; font-size:0.9rem; opacity:0.6; }
-
-    /* Responsive rules */
-    @media (max-width: 768px) {
-      nav { display:none; }
-      .hamburger { display:flex; position: fixed; top: 1.2rem; left: 1.25rem; }
-      .close-hamburger { display:flex; } /* visible inside sidebar */
-      .theme-container .toggle-text { display:none; }
-    }
-  </style>
-</head>
-<body data-theme="light">
-  <header>
-    <div style="display:flex; align-items:center; gap:1rem;">
-      <div class="hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
-        <div class="bar bar1"></div>
-        <div class="bar bar2"></div>
-        <div class="bar bar3"></div>
-      </div>
-      <div class="title">Aritra Mitra</div>
-    </div>
-
-    <div style="display:flex; align-items:center;">
-      <nav>
-        <a href="./index.html" style="border-bottom: 3px solid #fff; pointer-events:none;">Personal</a>
-        <a href="../acad/">Academic</a>
-        <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a>
-      </nav>
-      <div class="theme-container">
-        <input type="checkbox" id="theme-switch" />
-        <label for="theme-switch" class="switch"></label>
-        <span class="toggle-text">Switch to Dark Mode</span>
-      </div>
-    </div>
-  </header>
-
-  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
-    <div class="close-hamburger" id="closeHamburger" aria-label="Close menu" role="button" tabindex="0">
-      <div class="bar bar1"></div>
-      <div class="bar bar2"></div>
-      <div class="bar bar3"></div>
-    </div>
-
-    <h2>Aritra Mitra</h2>
-    <a href="./index.html" class="active">Personal</a>
-    <a href="../acad/">Academic</a>
-    <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a>
-  </div>
-
-  <div class="overlay" id="overlay" aria-hidden="true"></div>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Well hello there!</p>
-    <p>I'm Aritra Mitra. My journey in computer science began with a fascination for problem-solving and a curiosity about how things work behind the scenes. Over the years, this curiosity has blossomed into a passion for coding and technology. I first stumbled onto Computer Science in Class 11. I did not want to take Biology, and the only other option that my school provided was Computer Science. Well, I took that gamble, and it was a good one to take! I loved the subject a lot, and wanted to pursue it for further education. After clearing JEE Advanced, I wanted to pursue an Integrated M.Tech., as I wanted to pursue further academic prowess anyway. So, I enrolled into the B.Tech.-M.Tech. (Dual-Degree) programme in Computer Science and Engineering at Indian Institute of Technology Kharagpur. The years on campus were very fun, even though the first two years of college was online due to the COVID-19 pandemic. I made a lot of good friends in college, and really enjoyed the stay. Now, I am applying for PhD positions, as I would like to become a researcher.</p>
-    <p>Beyond academics, I have a deep love for music, having trained in Indian classical music for several years. I also enjoy traveling, exploring new places, and immersing myself in different cultures. Literature is another passion of mine; I enjoy reading and writing, particularly in my native language, Bengali.</p>
-    <p>This personal site is a space where I share my interests, hobbies, and a bit about my life outside of academics. Feel free to explore and get to know me better!</p>
-  </section>
-
-  <section id="hobbies">
-    <h2>Hobbies</h2>
-    <ul>
-      <li><strong>🎵 Music:</strong> I have been trained in Indian classical music for 7 years. I can sing, and also play the harmonium. Jamming sessions were a regular occurrence in my college friend group, especially in the nights. The vast majority of my playlist is in Bangla, and I have been listening to the band Chandrabindoo a lot recently.</li><br/>
-      <li><strong>✈️ Travel:</strong> I like to roam around. Solo traveling, family trips, getaways with friends— I've done all of them! I have toured a lot of places in India, and during my stay in Saarbrücken, I went to Paris, Strasbourg and Heidelberg. It is a bit difficult to pinpoint one trip that I loved the most, but the most beautiful scenes were probably in the city of Strasbourg, especially in the Petit France area, with the stream of water flowing by the old Alsatian houses. The most fun is probably the beach vacation with my collegemates at Tajpur, and the most refreshing trip was to the stony shores and serene scenes of Puducherry.</li><br/>
-      <li><strong>🖊️ Literature:</strong> I dabble a bit into writing, although I stick to my native tongue, Bangla. I have written short stories, poems, and a theatrical adaptation as well. I am currently writing an adaptation of a video game plot into a novel. A lot of these works are collaborative, with my friend Anamitra Mukhopadhyay. Long nights in college do provide a lot of literary motivation, huh!</li><br/>
-      <li><strong>📖 Reading:</strong> Well, I do read a fair amount, even though it is mostly children's literature and young adult books. Most of what I read is, again, in my native tongue, Bangla. I mean, this one does not come as a surprise, especially when I have spent my childhood in the place where the great works of Rabindranath Tagore were produced.</li><br/>
-    </ul>
-  </section>
-
-  <footer>&copy; 2025 Aritra Mitra</footer>
-
-  <script>
-    function setTheme(theme) {
-      document.body.dataset.theme = theme;
-      localStorage.setItem('theme', theme);
-      document.getElementById('theme-switch').checked = (theme === 'dark');
-      document.querySelector('.toggle-text').textContent =
-        theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
-    }
-
-    function toggleTheme() {
-      const current = document.body.dataset.theme;
-      setTheme(current === 'light' ? 'dark' : 'light');
-    }
-
-    // --- menu logic ---
-    window.onload = () => {
-      const saved = localStorage.getItem('theme') || 'light';
-      setTheme(saved);
-      document.getElementById('theme-switch').addEventListener('change', toggleTheme);
-
-      const hamburger = document.getElementById('hamburger');         // header hamburger (left)
-      const closeHamburger = document.getElementById('closeHamburger'); // inside-sidebar hamburger (right)
-      const mobileNav = document.getElementById('mobileNav');
-      const overlay = document.getElementById('overlay');
-
-      function openMenu() {
-        hamburger.classList.add('active');
-        closeHamburger.classList.add('active');
-        mobileNav.classList.add('active');
-        overlay.classList.add('active');
-        mobileNav.setAttribute('aria-hidden', 'false');
-      }
-
-      function closeMenu() {
-        hamburger.classList.remove('active');
-        closeHamburger.classList.remove('active');
-        mobileNav.classList.remove('active');
-        overlay.classList.remove('active');
-        mobileNav.setAttribute('aria-hidden', 'true');
-      }
-
-      // header hamburger toggles menu
-      hamburger.addEventListener('click', () => {
-        const open = mobileNav.classList.contains('active');
-        if (open) closeMenu(); else openMenu();
-      });
-      // keyboard accessibility for header hamburger
-      hamburger.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hamburger.click(); } });
-
-      // inside-sidebar close-hamburger (looks identical) closes menu
-      closeHamburger.addEventListener('click', closeMenu);
-      closeHamburger.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); closeMenu(); } });
-
-      // clicking overlay closes
-      overlay.addEventListener('click', closeMenu);
-    };
-  </script>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -316,6 +23,8 @@
       --toggle-sun: radial-gradient(circle at center, #FFD700 60%, #FFA500 100%);
       --toggle-bg-light: #20a6db;
       --toggle-bg-dark: #2E2E2E;
+      --highlight-text-light: #006464;
+      --highlight-text-dark: #66cccc;
     }
 
     body[data-theme="light"] {
@@ -365,7 +74,6 @@
     .toggle-text { margin-left:0.5rem; font-size:0.85rem; opacity:0; transition:opacity .3s; white-space:nowrap; }
     .theme-container:hover .toggle-text { opacity:1; }
 
-    /* hamburger now a normal inline item (no z-index tricks) */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -434,8 +142,8 @@
     .close-hamburger.active .bar3 { transform: rotate(-45deg) translate(6px, -6px); }
 
     .mobile-nav h2 { margin-top: 3rem; border-bottom:2px solid white; padding-bottom:.5rem; }
-    .mobile-nav a { color:white; text-decoration:none; font-weight:600; margin:1rem 0; border-bottom:3px solid transparent; }
-    .mobile-nav a.active { border-bottom:3px solid white; pointer-events:none; }
+    .mobile-nav a { color:white; text-decoration:none; font-weight:600; margin:1rem 0; padding-left: 5pt; border-left: 3pt solid transparent;}
+    .mobile-nav a.active { border-left:3px solid white; pointer-events:none; }
 
     .overlay {
       position: fixed;
@@ -451,10 +159,245 @@
     h2 { border-bottom:2px solid var(--accent); padding-bottom:0.5rem; }
     footer { text-align:center; padding:1rem; font-size:0.9rem; opacity:0.6; }
 
+    .collapsible-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s;
+      padding: 0.5rem;
+      margin: -0.5rem;
+      border-radius: 4px;
+    }
+
+    .collapsible-header:hover {
+      background-color: rgba(0, 150, 150, 0.1);
+    }
+
+    .collapsible-header h2 {
+      margin: 0;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.5rem;
+      flex: 1;
+    }
+
+    .toggle-icon {
+      width: 12px;
+      height: 12px;
+      border-right: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      border-radius: 0 0 3px 0;
+      transform: rotate(45deg);
+      transition: transform 0.3s ease;
+      margin-left: 1rem;
+      flex-shrink: 0;
+    }
+
+    .toggle-icon.expanded {
+      transform: rotate(-135deg);
+    }
+
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .collapsible-content.expanded {
+      max-height: 5000px;
+    }
+
+    .subsection {
+      margin: 1.5rem 0;
+    }
+
+    .subsection-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      padding: 0.75rem;
+      background-color: rgba(0, 150, 150, 0.05);
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      border-left: 3px solid var(--accent);
+    }
+
+    .subsection-header:hover {
+      background-color: rgba(0, 150, 150, 0.15);
+    }
+
+    .subsection-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .subsection .toggle-icon {
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      border-radius: 0 0 2px 0;
+    }
+
+    .gallery-grid {
+      padding: 2.5%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .gallery-row {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .gallery-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      cursor: pointer;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      color: white;
+      font-size: 3rem;
+      font-weight: 300;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+    }
+
+    .gallery-caption {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    /* Row-based layout for "When I shoot" section */
+    /* Row 1: landscape + portrait + landscape */
+    .gallery-row.row-1 .gallery-item.landscape {
+      flex-grow: 1.33;
+    }
+
+    .gallery-row.row-1 .gallery-item.portrait {
+      flex-grow: 0.75;
+    }
+
+    .gallery-row.row-1 .gallery-item img {
+      height: 235px;
+    }
+
+    /* Row 2: landscape + portrait + landscape */
+    .gallery-row.row-2 .gallery-item.landscape {
+      flex-grow: 1.33;
+    }
+
+    .gallery-row.row-2 .gallery-item.portrait {
+      flex-grow: 0.75;
+    }
+
+    .gallery-row.row-2 .gallery-item img {
+      height: 235px;
+    }
+
+    /* Row 3: landscape + portrait + portrait */
+    .gallery-row.row-3 .gallery-item.landscape {
+      flex-grow: 1.33;
+    }
+
+    .gallery-row.row-3 .gallery-item.portrait {
+      flex-grow: 0.75;
+    }
+
+    .gallery-row.row-3 .gallery-item img {
+      height: 280px;
+    }
+
+    /* Standard grid for "When I'm shot" section */
+    .gallery-grid.standard {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-grid.standard .gallery-item img {
+      height: 200px;
+    }
+
     @media (max-width: 768px) {
       nav { display:none; }
       .hamburger { display:flex; }
       .theme-container .toggle-text { display:none; }
+      
+      .gallery-row {
+        flex-direction: column;
+      }
+      
+      .gallery-item.landscape,
+      .gallery-item.portrait {
+        flex-grow: 1;
+      }
+
+      .gallery-row .gallery-item img {
+        height: auto !important;
+      }
+
+      .gallery-grid.standard {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -473,7 +416,6 @@
       <nav>
         <a href="./index.html" style="border-bottom: 3px solid #fff; pointer-events:none;">Personal</a>
         <a href="../acad/">Academic</a>
-        <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a>
       </nav>
       <div class="theme-container">
         <input type="checkbox" id="theme-switch" />
@@ -493,7 +435,6 @@
     <h2>Aritra Mitra</h2>
     <a href="./index.html" class="active">Personal</a>
     <a href="../acad/">Academic</a>
-    <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a>
   </div>
 
   <div class="overlay" id="overlay" aria-hidden="true"></div>
@@ -510,13 +451,132 @@
     <h2>Hobbies</h2>
     <ul>
       <li><strong>🎵 Music:</strong> I have been trained in Indian classical music for 7 years. I can sing, and also play the harmonium. Jamming sessions were a regular occurrence in my college friend group, especially in the nights. The vast majority of my playlist is in Bangla, and I have been listening to the band Chandrabindoo a lot recently.</li><br/>
-      <li><strong>✈️ Travel:</strong> I like to roam around. Solo traveling, family trips, getaways with friends— I've done all of them! I have toured a lot of places in India, and during my stay in Saarbrücken, I went to Paris, Strasbourg and Heidelberg. It is a bit difficult to pinpoint one trip that I loved the most, but the most beautiful scenes were probably in the city of Strasbourg, especially in the Petit France area, with the stream of water flowing by the old Alsatian houses. The most fun is probably the beach vacation with my collegemates at Tajpur, and the most refreshing trip was to the stony shores and serene scenes of Puducherry.</li><br/>
+      <li><strong>✈️ Travel:</strong> I like to roam around. Solo traveling, family trips, getaways with friends— I've done all of them! I have toured a lot of places in India, and during my stay in Saarbrücken, I went to Paris, Strasbourg and Heidelberg. It is a bit difficult to pinpoint one trip that I loved the most, but the most beautiful scenes were probably in the city of Strasbourg, especially in the Petite-France area, with the stream of water flowing by the old Alsatian houses. The most fun was probably the beach vacation with my collegemates at Tajpur, and the most refreshing trip was to the stony shores and serene scenes of Puducherry.</li><br/>
       <li><strong>🖊️ Literature:</strong> I dabble a bit into writing, although I stick to my native tongue, Bangla. I have written short stories, poems, and a theatrical adaptation as well. I am currently writing an adaptation of a video game plot into a novel. A lot of these works are collaborative, with my friend Anamitra Mukhopadhyay. Long nights in college do provide a lot of literary motivation, huh!</li><br/>
       <li><strong>📖 Reading:</strong> Well, I do read a fair amount, even though it is mostly children's literature and young adult books. Most of what I read is, again, in my native tongue, Bangla. I mean, this one does not come as a surprise, especially when I have spent my childhood in the place where the great works of Rabindranath Tagore were produced.</li><br/>
     </ul>
   </section>
 
+  <section id="gallery">
+    <div class="collapsible-header" onclick="toggleSection('gallery-content')">
+      <h2>Gallery</h2>
+      <div class="toggle-icon" id="gallery-icon"></div>
+    </div>
+    <div class="collapsible-content" id="gallery-content">
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSubsection('shooting')">
+          <h3>When I shoot</h3>
+          <div class="toggle-icon" id="shooting-icon"></div>
+        </div>
+        <div class="collapsible-content" id="shooting-content">
+          <div class="gallery-grid">
+            <div class="gallery-row row-1">
+              <div class="gallery-item landscape">
+                <img src="./img/Strasbourg.jpg" data-full="./img/full/Strasbourg.jpg" alt="An afternoon in Strasbourg" onclick="openLightbox(this)">
+                <div class="gallery-caption">An afternoon in Strasbourg</div>
+              </div>
+              <div class="gallery-item portrait">
+                <img src="./img/Eiffel Tower.jpg" data-full="./img/full/Eiffel Tower.jpg" alt="Eiffel Tower, and a lot of contrails" onclick="openLightbox(this)">
+                <div class="gallery-caption">Eiffel Tower, and a lot of contrails</div>
+              </div>
+              <div class="gallery-item landscape">
+                <img src="./img/Ill at Strasbourg.jpg" data-full="./img/full/Ill at Strasbourg.jpg" alt="The Ill flowing by" onclick="openLightbox(this)">
+                <div class="gallery-caption">The Ill flowing by</div>
+              </div>
+            </div>
+            <div class="gallery-row row-2">
+              <div class="gallery-item landscape">
+                <img src="./img/Arc de Triomphe.jpg" data-full="./img/full/Arc de Triomphe.jpg" alt="Arc de Triomphe, Paris" onclick="openLightbox(this)">
+                <div class="gallery-caption">Arc de Triomphe, Paris</div>
+              </div>
+              <div class="gallery-item portrait">
+                <img src="./img/and a lamppost.JPG" data-full="./img/full/and a lamppost.JPG" alt="...and a lamppost" onclick="openLightbox(this)">
+                <div class="gallery-caption">...and a lamppost</div>
+              </div>
+              <div class="gallery-item landscape">
+                <img src="./img/Sunset at Gangasagar.jpg" data-full="./img/full/Sunset at Gangasagar.jpg" alt="Sun sets near the mouth of Ganga" onclick="openLightbox(this)">
+                <div class="gallery-caption">Sun sets near the mouth of Ganga</div>
+              </div>
+            </div>
+            <div class="gallery-row row-3">
+              <div class="gallery-item landscape">
+                <img src="./img/manning a cannon.jpg" data-full="./img/full/manning a cannon.jpg" alt="cloud mans a cannon" onclick="openLightbox(this)">
+                <div class="gallery-caption">cloud mans a cannon</div>
+              </div>
+              <div class="gallery-item portrait">
+                <img src="./img/qutab.JPG" data-full="./img/full/qutab.JPG" alt="Qutab's silhouette" onclick="openLightbox(this)">
+                <div class="gallery-caption">Qutab's silhouette</div>
+              </div>
+              <div class="gallery-item portrait">
+                <img src="./img/web.jpg" data-full="./img/full/web.jpg" alt="X marks the spider's web" onclick="openLightbox(this)">
+                <div class="gallery-caption">X marks the spider's web</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSubsection('shot')">
+          <h3>When I'm shot</h3>
+          <div class="toggle-icon" id="shot-icon"></div>
+        </div>
+        <div class="collapsible-content" id="shot-content">
+          <div class="gallery-grid">
+            <div class="gallery-row row-1">
+              <div class="gallery-item landscape">
+                <img src="./img/Farewell, KGP.JPG" data-full="./img/full/Farewell, KGP.JPG" alt="Farewell, Kharagpur..." onclick="openLightbox(this)">
+                <div class="gallery-caption">Farewell, Kharagpur...</div>
+              </div>
+              <div class="gallery-item portrait">
+                <img src="./img/Illuminated.JPG" data-full="./img/full/Illuminated.JPG" alt="Illuminated by the matrix of lights" onclick="openLightbox(this)">
+                <div class="gallery-caption">Illuminated by the matrix of lights</div>
+              </div>
+              <div class="gallery-item portrait">
+                <img src="./img/47 aint nothin.jpg" data-full="./img/full/47 aint nothin.jpg" alt="Jama Masjid at 47℃ has nothing on me" onclick="openLightbox(this)">
+                <div class="gallery-caption">Jama Masjid at 47℃ has nothing on me</div>
+              </div>
+            </div>
+            <!-- <div class="gallery-row row-2">
+              <div class="gallery-item landscape">
+                <img src="./img/Arc de Triomphe.jpg" data-full="./img/full/Arc de Triomphe.jpg" alt="Arc de Triomphe, Paris" onclick="openLightbox(this)">
+                <div class="gallery-caption">Arc de Triomphe, Paris</div>
+              </div>
+              <div class="gallery-item portrait">
+                <img src="./img/and a lamppost.JPG" data-full="./img/full/and a lamppost.JPG" alt="...and a lamppost" onclick="openLightbox(this)">
+                <div class="gallery-caption">...and a lamppost</div>
+              </div>
+              <div class="gallery-item landscape">
+                <img src="./img/Sunset at Gangasagar.jpg" data-full="./img/full/Sunset at Gangasagar.jpg" alt="Sun sets near the mouth of Ganga" onclick="openLightbox(this)">
+                <div class="gallery-caption">Sun sets near the mouth of Ganga</div>
+              </div>
+            </div>
+            <div class="gallery-row row-3">
+              <div class="gallery-item landscape">
+                <img src="./img/manning a cannon.jpg" data-full="./img/full/manning a cannon.jpg" alt="cloud mans a cannon" onclick="openLightbox(this)">
+                <div class="gallery-caption">cloud mans a cannon</div>
+              </div>
+              <div class="gallery-item portrait">
+                <img src="./img/qutab.JPG" data-full="./img/full/qutab.JPG" alt="Qutab's silhouette" onclick="openLightbox(this)">
+                <div class="gallery-caption">Qutab's silhouette</div>
+              </div>
+              <div class="gallery-item portrait">
+                <img src="./img/web.jpg" data-full="./img/full/web.jpg" alt="X marks the spider's web" onclick="openLightbox(this)">
+                <div class="gallery-caption">X marks the spider's web</div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>&copy; 2025 Aritra Mitra</footer>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
 
   <script>
     function setTheme(theme) {
@@ -566,6 +626,39 @@
       closeHamburger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); closeMenu(); } });
       overlay.addEventListener('click', closeMenu);
     };
+
+    function toggleSection(contentId) {
+      const content = document.getElementById(contentId);
+      const icon = document.getElementById(contentId.replace('-content', '-icon'));
+      
+      content.classList.toggle('expanded');
+      icon.classList.toggle('expanded');
+    }
+
+    function toggleSubsection(subsectionName) {
+      const content = document.getElementById(subsectionName + '-content');
+      const icon = document.getElementById(subsectionName + '-icon');
+      
+      content.classList.toggle('expanded');
+      icon.classList.toggle('expanded');
+    }
+
+    function openLightbox(img) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const fullSrc = img.getAttribute('data-full') || img.src;
+      
+      lightboxImg.src = fullSrc;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
   </script>
 </body>
 </html>

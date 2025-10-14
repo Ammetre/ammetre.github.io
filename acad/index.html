@@ -22,6 +22,8 @@
       --toggle-sun: radial-gradient(circle at center, #FFD700 60%, #FFA500 100%);
       --toggle-bg-light: #20a6db;
       --toggle-bg-dark: #2E2E2E;
+      --highlight-text-light: #372112;
+      --highlight-text-dark: #f0bb99;
     }
 
     body[data-theme="light"] {
@@ -49,6 +51,16 @@
       background-color: var(--header-dark);
     }
 
+    body[data-theme="light"] .hltext {
+      color: var(--highlight-text-light);
+      font-weight: 200;
+    }
+
+    body[data-theme="dark"] .hltext {
+      color: var(--highlight-text-dark);
+      font-weight: 200;
+    }
+    
     nav {
       display: flex;
       align-items: center;
@@ -140,8 +152,10 @@
     .close-hamburger.active .bar3 { transform: rotate(-45deg) translate(6px, -6px); }
 
     .mobile-nav h2 { margin-top: 3rem; border-bottom:2px solid white; padding-bottom:.5rem; }
-    .mobile-nav a { color:white; text-decoration:none; font-weight:600; margin:1rem 0; border-bottom:3px solid transparent; }
-    .mobile-nav a.active { border-bottom:3px solid white; pointer-events:none; }
+    .mobile-nav a { color:white; text-decoration:none; font-weight:600; margin:1rem 0; padding-left: 5pt; border-left: 3pt solid transparent;}
+    .mobile-nav a.active { border-left:3px solid white; pointer-events:none; }
+
+    
 
     .overlay {
       position: fixed;
@@ -179,7 +193,7 @@
       <nav>
         <a href="../pers">Personal</a>
         <a href="./index.html" style="border-bottom: 3px solid #fff; pointer-events:none;">Academic</a>
-        <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a>
+        <!-- <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a> -->
       </nav>
       <div class="theme-container">
         <input type="checkbox" id="theme-switch" />
@@ -199,7 +213,7 @@
     <h2>Aritra Mitra</h2>
     <a href="../pers">Personal</a>
     <a href="./index.html"  class="active">Academic</a>
-    <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a>
+    <!-- <a href="../prof/" style="opacity:0.5; pointer-events:none;">Professional</a> -->
   </div>
 
   <div class="overlay" id="overlay" aria-hidden="true"></div>
@@ -207,9 +221,9 @@
   <section id="education">
     <h2>Education</h2>
     <p><strong>Master’s and Bechelor's (Integrated) Program</strong> — Indian Institute of Technology Kharagpur, 2020-2025<br />
-      B.Tech.-M.Tech. (Dual-Degree) in Computer Science and Engineering</p>
-    <p><strong>Higher Secondary</strong> — Behala Aryya Vidyamandir, 2020</p>
-    <p><strong>Secondary</strong> — Behala Aryya Vidyamandir, 2018</p>
+      B.Tech.-M.Tech. (Dual-Degree) in Computer Science and Engineering. <span class="hltext"> Department Rank: 2</span></p>
+    <p><strong>Higher Secondary</strong> — Behala Aryya Vidyamandir, 2020. <span class="hltext"> School Rank: 1, State Rank: 14</span></p>
+    <p><strong>Secondary</strong> — Behala Aryya Vidyamandir, 2018. <span class="hltext"> School Rank: 2, State Rank: 37</span></p>
   </section>
   <section id="internships">
     <h2>Internships</h2>
@@ -239,7 +253,7 @@
         <strong>Duration:</strong> May 2022 - July 2022
         <ul>
           <li>
-            Created a web application for course management, with access control systems to manage multiple device logins, integrated IDE for coding exercises, and data collection from the IDE to classify mistakes by learners
+            Created a web application for course management, with access control systems to manage multiple device logins, integrated IDE for coding exercises, and data collection from the IDE to classify mistakes by learners.
           </li>
         </ul>
       </li>
@@ -249,17 +263,17 @@
   <section id="publications">
     <h2>Publications</h2>
     <ul>
-      <li><strong>Exploring Usefulness of C Comments with Silver-Standard Machine Learning Models</strong> — Aritra Mitra, <em>Forum for Information Retrieval Evaluation (FIRE)</em>, 2024.</li>
-      <li><strong>Assessing the Utility of C Comments with SVM and Naïve Bayes Classifier</strong> — Aritra Mitra, <em>Forum for Information Retrieval Evaluation (FIRE)</em>, 2023.</li>
+      <li><strong>Exploring Usefulness of C Comments with Silver-Standard Machine Learning Models</strong> — Aritra Mitra. <em>Forum for Information Retrieval Evaluation (FIRE)</em>, 2024.</li>
+      <li><strong>Assessing the Utility of C Comments with SVM and Naïve Bayes Classifier</strong> — Aritra Mitra. <em>Forum for Information Retrieval Evaluation (FIRE)</em>, 2023.</li>
     </ul>
   </section>
 
-  <!-- <section id="manuscripts">
+  <section id="manuscripts">
     <h2>Manuscripts</h2>
     <ul>
-      <li>Aritra Mitra, Srijoni Majumdar, Anamitra Mukhopadhyay, Partha Pratim Das, <strong>Leveraging Design-Aware Context in Large Language Models for Code Comment Generation</strong></li>
+      <li><strong>Leveraging Design-Aware Context in Large Language Models for Code Comment Generation</strong> — Aritra Mitra, Srijoni Majumdar, Anamitra Mukhopadhyay, Partha Pratim Das, Paul D Clough, Partha Pratim Chakrabarti. <em>Submitted to International Conference on Software Engineering (ICSE)</em>, 2026.</li>
     </ul>
-  </section> -->
+  </section>
 
   <footer>
     &copy; 2025 Aritra Mitra
