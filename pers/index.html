@@ -155,9 +155,34 @@
 
     .overlay.active { opacity:1; visibility:visible; }
 
-    section { max-width:800px; margin:auto; padding:2rem; }
+    section { max-width:800px; margin:auto; padding:1rem; text-align: justify;}
     h2 { border-bottom:2px solid var(--accent); padding-bottom:0.5rem; }
     footer { text-align:center; padding:1rem; font-size:0.9rem; opacity:0.6; }
+
+    #hobbies ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    #hobbies li {
+      /* display: flex; */
+      /* align-items: flex-start; */
+      margin-bottom: 1rem;
+    }
+
+    #hobbies .emoji {
+      font-size: 1rem;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    body[data-theme="light"] #hobbies strong {
+      color: var(--highlight-text-light);
+    }
+
+    body[data-theme="dark"] #hobbies strong {
+      color: var(--highlight-text-dark);
+    }
 
     .collapsible-header {
       display: flex;
@@ -366,17 +391,6 @@
       height: 280px;
     }
 
-    /* Standard grid for "When I'm shot" section */
-    .gallery-grid.standard {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .gallery-grid.standard .gallery-item img {
-      height: 200px;
-    }
-
     @media (max-width: 768px) {
       nav { display:none; }
       .hamburger { display:flex; }
@@ -393,10 +407,6 @@
 
       .gallery-row .gallery-item img {
         height: auto !important;
-      }
-
-      .gallery-grid.standard {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -450,10 +460,10 @@
   <section id="hobbies">
     <h2>Hobbies</h2>
     <ul>
-      <li><strong>🎵 Music:</strong> I have been trained in Indian classical music for 7 years. I can sing, and also play the harmonium. Jamming sessions were a regular occurrence in my college friend group, especially in the nights. The vast majority of my playlist is in Bangla, and I have been listening to the band Chandrabindoo a lot recently.</li><br/>
-      <li><strong>✈️ Travel:</strong> I like to roam around. Solo traveling, family trips, getaways with friends— I've done all of them! I have toured a lot of places in India, and during my stay in Saarbrücken, I went to Paris, Strasbourg and Heidelberg. It is a bit difficult to pinpoint one trip that I loved the most, but the most beautiful scenes were probably in the city of Strasbourg, especially in the Petite-France area, with the stream of water flowing by the old Alsatian houses. The most fun was probably the beach vacation with my collegemates at Tajpur, and the most refreshing trip was to the stony shores and serene scenes of Puducherry.</li><br/>
-      <li><strong>🖊️ Literature:</strong> I dabble a bit into writing, although I stick to my native tongue, Bangla. I have written short stories, poems, and a theatrical adaptation as well. I am currently writing an adaptation of a video game plot into a novel. A lot of these works are collaborative, with my friend Anamitra Mukhopadhyay. Long nights in college do provide a lot of literary motivation, huh!</li><br/>
-      <li><strong>📖 Reading:</strong> Well, I do read a fair amount, even though it is mostly children's literature and young adult books. Most of what I read is, again, in my native tongue, Bangla. I mean, this one does not come as a surprise, especially when I have spent my childhood in the place where the great works of Rabindranath Tagore were produced.</li><br/>
+      <li><span class="emoji">🎵</span><strong>Music:</strong> I have been trained in Indian classical music for 7 years. I can sing, and also play the harmonium. Jamming sessions were a regular occurrence in my college friend group, especially in the nights. The vast majority of my playlist is in Bangla, and I have been listening to the band Chandrabindoo a lot recently.</li>
+      <li><span class="emoji">✈️</span><strong>Travel:</strong> I like to roam around. Solo traveling, family trips, getaways with friends— I've done all of them! I have toured a lot of places in India, and during my stay in Saarbrücken, I went to Paris, Strasbourg and Heidelberg. It is a bit difficult to pinpoint one trip that I loved the most, but the most beautiful scenes were probably in the city of Strasbourg, especially in the Petite-France area, with the stream of water flowing by the old Alsatian houses. The most fun was probably the beach vacation with my collegemates at Tajpur, and the most refreshing trip was to the stony shores and serene scenes of Puducherry.</li>
+      <li><span class="emoji">🖊️</span><strong>Literature:</strong> I dabble a bit into writing, although I stick to my native tongue, Bangla. I have written short stories, poems, and a theatrical adaptation as well. I am currently writing an adaptation of a video game plot into a novel. A lot of these works are collaborative, with my friend Anamitra Mukhopadhyay. Long nights in college do provide a lot of literary motivation, huh!</li>
+      <li><span class="emoji">📖</span><strong>Reading:</strong> Well, I do read a fair amount, even though it is mostly children's literature and young adult books. Most of what I read is, again, in my native tongue, Bangla. I mean, this one does not come as a surprise, especially when I have spent my childhood in the place where the great works of Rabindranath Tagore were produced.</li>
     </ul>
   </section>
 
@@ -536,34 +546,6 @@
                 <img src="./img/47 aint nothin.jpg" data-full="./img/full/47 aint nothin.jpg" alt="Jama Masjid at 47℃ has nothing on me" onclick="openLightbox(this)">
                 <div class="gallery-caption">Jama Masjid at 47℃ has nothing on me</div>
               </div>
-            </div>
-            <!-- <div class="gallery-row row-2">
-              <div class="gallery-item landscape">
-                <img src="./img/Arc de Triomphe.jpg" data-full="./img/full/Arc de Triomphe.jpg" alt="Arc de Triomphe, Paris" onclick="openLightbox(this)">
-                <div class="gallery-caption">Arc de Triomphe, Paris</div>
-              </div>
-              <div class="gallery-item portrait">
-                <img src="./img/and a lamppost.JPG" data-full="./img/full/and a lamppost.JPG" alt="...and a lamppost" onclick="openLightbox(this)">
-                <div class="gallery-caption">...and a lamppost</div>
-              </div>
-              <div class="gallery-item landscape">
-                <img src="./img/Sunset at Gangasagar.jpg" data-full="./img/full/Sunset at Gangasagar.jpg" alt="Sun sets near the mouth of Ganga" onclick="openLightbox(this)">
-                <div class="gallery-caption">Sun sets near the mouth of Ganga</div>
-              </div>
-            </div>
-            <div class="gallery-row row-3">
-              <div class="gallery-item landscape">
-                <img src="./img/manning a cannon.jpg" data-full="./img/full/manning a cannon.jpg" alt="cloud mans a cannon" onclick="openLightbox(this)">
-                <div class="gallery-caption">cloud mans a cannon</div>
-              </div>
-              <div class="gallery-item portrait">
-                <img src="./img/qutab.JPG" data-full="./img/full/qutab.JPG" alt="Qutab's silhouette" onclick="openLightbox(this)">
-                <div class="gallery-caption">Qutab's silhouette</div>
-              </div>
-              <div class="gallery-item portrait">
-                <img src="./img/web.jpg" data-full="./img/full/web.jpg" alt="X marks the spider's web" onclick="openLightbox(this)">
-                <div class="gallery-caption">X marks the spider's web</div>
-              </div> -->
             </div>
           </div>
         </div>
