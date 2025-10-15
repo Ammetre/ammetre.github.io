@@ -230,7 +230,7 @@
     }
 
     .collapsible-content.expanded {
-      max-height: 5000px;
+      max-height: 10000px;
     }
 
     .subsection {
@@ -396,6 +396,16 @@
       .hamburger { display:flex; }
       .theme-container .toggle-text { display:none; }
       
+      section { 
+        padding: 1rem 0.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .gallery-grid {
+        padding: 1%;
+        margin-bottom: 2rem;
+      }
+      
       .gallery-row {
         flex-direction: column;
       }
@@ -407,6 +417,15 @@
 
       .gallery-row .gallery-item img {
         height: auto !important;
+      }
+
+      .collapsible-content.expanded {
+        max-height: none;
+        overflow: visible;
+      }
+
+      #gallery {
+        padding-bottom: 3rem;
       }
     }
   </style>
