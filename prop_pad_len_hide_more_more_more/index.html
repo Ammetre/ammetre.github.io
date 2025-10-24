@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Aritra Mitra - Here we are</title>
+  <style>
+    body {
+      font-family: 'Delius', 'Noto Sans Bengali', sans-serif;
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    :root {
+      --accent: #e718c7;
+      --bg-light: #f8f8f8;
+      --bg-dark: #121212;
+      --text-light: #000;
+      --text-dark: #fff;
+      --header-light: #e718c7;
+      --header-dark: #8a0e78;
+      --toggle-sun: radial-gradient(circle at center, #FFD700 60%, #FFA500 100%);
+      --toggle-bg-light: #20a6db;
+      --toggle-bg-dark: #2E2E2E;
+      --highlight-text-light: #b8138f;
+      --highlight-text-dark: #ff8fe7;
+    }
+
+    body[data-theme="light"] {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body[data-theme="dark"] {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--header-light);
+      color: white;
+      position: relative;
+      transition: background-color 0.4s;
+    }
+
+    body[data-theme="dark"] header {
+      background-color: var(--header-dark);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    .theme-container { 
+      display: flex; 
+      align-items: center; 
+      margin-left: 1rem; 
+    }
+    
+    .switch { 
+      display: inline-block; 
+      width: 60px; 
+      height: 32px; 
+      border-radius: 32px; 
+      position: relative; 
+      background: var(--toggle-bg-light); 
+      transition: background .4s;
+    }
+    
+    .switch::after { 
+      content: ""; 
+      position: absolute; 
+      width: 24px; 
+      height: 24px; 
+      top: 4px; 
+      left: 4px; 
+      background: var(--toggle-sun); 
+      border-radius: 50%; 
+      transition: transform .4s, background .4s; 
+    }
+    
+    input[type="checkbox"] {
+      display: none;
+    }
+    
+    input[type="checkbox"]:checked + .switch { 
+      background: var(--toggle-bg-dark); 
+    }
+    
+    input[type="checkbox"]:checked + .switch::after { 
+      transform: translateX(28px); 
+      background: #fff; 
+    }
+
+    .toggle-text { 
+      margin-left: 0.5rem; 
+      font-size: 0.85rem; 
+      opacity: 0; 
+      transition: opacity .3s; 
+      white-space: nowrap; 
+    }
+    
+    .theme-container:hover .toggle-text { 
+      opacity: 1; 
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      width: 28px;
+      height: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hamburger .bar {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+
+    .hamburger.active .bar1 { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active .bar2 { opacity: 0; }
+    .hamburger.active .bar3 { transform: rotate(-45deg) translate(6px, -6px); }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 66%;
+      height: 100%;
+      background-color: var(--header-light);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      transition: left 0.32s ease;
+      z-index: 1001;
+    }
+
+    body[data-theme="dark"] .mobile-nav { background-color: var(--header-dark); }
+    .mobile-nav.active { left: 0; }
+
+    .close-hamburger {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      align-items: center;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .close-hamburger .bar {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+
+    .close-hamburger.active .bar1 { transform: rotate(45deg) translate(5px, 5px); }
+    .close-hamburger.active .bar2 { opacity: 0; }
+    .close-hamburger.active .bar3 { transform: rotate(-45deg) translate(6px, -6px); }
+
+    .mobile-nav h2 { margin-top: 3rem; border-bottom:2px solid white; padding-bottom:.5rem; }
+    .mobile-nav a { color:white; text-decoration:none; font-weight:600; margin:1rem 0; padding-left: 5pt; border-left: 3pt solid transparent;}
+
+    body[data-theme="light"] p a {
+      color: black;
+      /* text-decoration: none; */
+    }
+
+    body[data-theme="dark"] p a {
+      color: white;
+      /* text-decoration: none; */
+    }
+
+    .overlay {
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background-color: rgba(0,0,0,0.5);
+      opacity:0; visibility:hidden; transition:opacity .3s ease;
+      z-index:1000;
+    }
+
+    .overlay.active { opacity:1; visibility:visible; }
+
+    section { 
+      max-width: 800px; 
+      margin: auto; 
+      padding: 1rem; 
+      text-align: justify;
+    }
+    
+    h2 { 
+      border-bottom: 2px solid var(--accent); 
+      padding-bottom: 0.5rem; 
+      color: var(--accent);
+    }
+    
+    footer { 
+      text-align: center; 
+      padding: 1rem; 
+      font-size: 0.9rem; 
+      opacity: 0.6; 
+    }
+
+    .poem-container {
+      font-family: 'Noto Sans Bengali', 'IBM Plex Sans', sans-serif;
+      /* font-size: 1.1rem; */
+      line-height: 1.5;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      max-width: 600px;
+      text-align: left;
+    }
+
+    .poem-line {
+      margin: 0;
+    }
+
+    body[data-theme="light"] .firstchar{
+      color: var(--highlight-text-light)
+    }
+
+    body[data-theme="dark"] .firstchar{
+      color: var(--highlight-text-dark)
+    }
+
+    .poem-stanza {
+      margin: 1.5rem 0;
+    }
+
+    .indent-1 {
+      padding-left: 3rem;
+    }
+
+    .indent-2 {
+      padding-left: 5rem;
+    }
+
+    .signature {
+      text-align: right;
+      font-style: italic;
+      margin-top: 2rem;
+      color: var(--accent);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+      nav { display:none; }
+      .hamburger { display:flex; }
+      .theme-container .toggle-text { display:none; }
+      
+      section { 
+        padding: 1rem 0.5rem;
+      }
+
+      .poem-container {
+        font-size: 1rem;
+        padding: 1rem;
+      }
+
+      .indent-1 {
+        padding-left: 1.5rem;
+      }
+
+      .indent-2 {
+        padding-left: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <header>
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <div class="hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+      </div>
+      <div class="title">Aritra Mitra</div>
+    </div>
+
+    <div style="display:flex; align-items:center;">
+      <nav>
+        <a href="../pers/">Personal</a>
+        <a href="../academic">Academic</a>
+      </nav>
+      <div class="theme-container">
+        <input type="checkbox" id="theme-switch" />
+        <label for="theme-switch" class="switch"></label>
+        <span class="toggle-text">Switch to Dark Mode</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <div class="close-hamburger" id="closeHamburger" aria-label="Close menu" role="button" tabindex="0">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+      <div class="bar bar3"></div>
+    </div>
+
+    <h2>Aritra Mitra</h2>
+    <a href="#proposer">The Proposer</a>
+    <a href="#proposal">The Proposal</a>
+  </div>
+
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <section id="proposer">
+    <h2>প্রস্তাবক (The Proposer)</h2>
+    <p>নমস্কার।</p>
+    <p>আজ্ঞে আমার নাম অরিত্র। আমি আপনার বন্ধু, একটু ন্যাকা, খানিকটা কবি, আর অনেকটা ফাজিল। তা এই কবির বেশ কিছুদিন ধরেই একখানা কথা আপনাকে বলবার ছিল, সে সাহস করে বলে উঠতে পারেনি। তার নিজের মতোই ফক্কড় কিছু ছোঁড়া তাকে ঠেলেঠুলে সাহস জুগিয়েছে।</p>
+    <p>তা, বিস্তারে বিবরণ-সহিত ন্যাকামো না করিয়া আমি মনে করি, আপনাকে প্রস্তাবখানা শুনিয়ে দেওয়াই ভালো, এবং যৎকিঞ্চিৎ সাহসের লক্ষণ।</p>
+  </section>
+
+  <section id="proposal">
+    <h2>প্রস্তাব (The Proposal)</h2>
+    <div class="poem-container">
+      <div class="poem-stanza">
+        <div class="poem-line"><span class="firstchar">এ</span>ই&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;জ্যোৎস্নাবিহীনা রাত্রির মতো চুল যে তোমার, মেয়ে,</div>
+        <div class="poem-line indent-1"><span class="firstchar">ই</span>ন্দু লুকায় মেঘের মায়ায় ঐ মুখপানে চেয়ে।</div>
+        <div class="poem-line indent-2"><span class="firstchar">যে</span>দিকে তাকাই</div>
+        <div class="poem-line indent-2"><span class="firstchar">দি</span>ক ভুলে যাই</div>
+        <div class="poem-line indent-1"><span class="firstchar">দি</span>কহারা আমি ঘুরিয়া ফিরিনু শুধু তোমারেই চেয়ে।</div>
+      </div>
+
+      <div class="poem-stanza">
+        <div class="poem-line indent-1"><span class="firstchar">ম</span>ন-পাখি করে উড়ু-উড়ু বড়, বুক করে দুরু-দুরু,</div>
+        <div class="poem-line"><span class="firstchar">নি</span>তি&nbsp;&nbsp;&nbsp;&nbsp;পাচ্ছি খবর, (পাতা খসানোর সময় হয়েছে শুরু)</div>
+        <div class="poem-line indent-2"><span class="firstchar">প্রে</span>ম-প্রেম পায়,</div>
+        <div class="poem-line indent-2">“<span class="firstchar">ম</span>রিবি রে হায়,”</div>
+        <div class="poem-line indent-1"><span class="firstchar">ক</span>হে এ মগজ। হৃদয় শুধায়, “পাপ কি তাহাতে গুরু?”</div>
+      </div>
+
+      <div class="poem-stanza">
+        <div class="poem-line indent-1"><span class="firstchar">র</span>হিল যে লেখা প্রথম অক্ষরে। তোমারি জন্য, প্রিয়ে,</div>
+        <div class="poem-line indent-1"><span class="firstchar">বা</span>র্তা পাঠানু কবিতার দ্বারা, প্রস্তাব শেষে নিয়ে।</div>
+      </div>
+
+      <div class="signature">— গরিবখানার মিত্তিরমশাই</div>
+    </div>
+  </section>
+  <section id="coconspirator">
+    <h2>সহযোগী নিবেদক (Co-conspirators)</h2>
+    <p>সহযোগী নিবেদকঃ অনমিত্র মুখোপাধ্যায় <a href="Ana_dar_certificate.pdf">(শংসাপত্র)</a></p>
+    <p>Co-conspirator: Anubhav Dhar <a href=mittirmoshai_cert.pdf>(Certificate)</a></p>
+  </section>
+  
+
+  <footer>&copy; 2025 মহৎ প্রেমিক ন্যাকা ন্যাকা</footer>
+
+  <script>
+    function setTheme(theme) {
+      document.body.dataset.theme = theme;
+      localStorage.setItem('proposalTheme', theme);
+      document.getElementById('theme-switch').checked = (theme === 'dark');
+      document.querySelector('.toggle-text').textContent =
+        theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+    }
+
+    function toggleTheme() {
+      const current = document.body.dataset.theme;
+      setTheme(current === 'light' ? 'dark' : 'light');
+    }
+
+    window.onload = () => {
+      const saved = localStorage.getItem('proposalTheme') || 'light';
+      setTheme(saved);
+      document.getElementById('theme-switch').addEventListener('change', toggleTheme);
+
+      const hamburger = document.getElementById('hamburger');
+      const closeHamburger = document.getElementById('closeHamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('overlay');
+
+      function openMenu() {
+        hamburger.classList.add('active');
+        closeHamburger.classList.add('active');
+        mobileNav.classList.add('active');
+        overlay.classList.add('active');
+        mobileNav.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeMenu() {
+        hamburger.classList.remove('active');
+        closeHamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        overlay.classList.remove('active');
+        mobileNav.setAttribute('aria-hidden', 'true');
+      }
+
+      hamburger.addEventListener('click', () => {
+        mobileNav.classList.contains('active') ? closeMenu() : openMenu();
+      });
+      hamburger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); hamburger.click(); } });
+      closeHamburger.addEventListener('click', closeMenu);
+      closeHamburger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); closeMenu(); } });
+      overlay.addEventListener('click', closeMenu);
+    };
+  </script>
+</body>
+</html>
