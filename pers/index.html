@@ -362,15 +362,27 @@
     /* Row-based layout for "When I shoot" section */
     /* Row 1: landscape + portrait + landscape */
     .gallery-row.row-1 .gallery-item.landscape {
-      flex-grow: 1.33;
+      flex-grow: 1.5;
     }
 
     .gallery-row.row-1 .gallery-item.portrait {
-      flex-grow: 0.75;
+      flex-grow: 0.6;
+    }
+ 
+    .gallery-row.row-1 .gallery-item img {
+      height: 230px;
     }
 
-    .gallery-row.row-1 .gallery-item img {
-      height: 235px;
+    body[data-theme="dark"] .hidden-link {
+      text-decoration: none;
+      color: var(--text-dark);
+      cursor: text;
+    }
+
+    body[data-theme="light"] .hidden-link {
+      text-decoration: none;
+      color: var(--text-light);
+      cursor: text;
     }
 
     /* Row 2: landscape + portrait + landscape */
@@ -396,7 +408,19 @@
     }
 
     .gallery-row.row-3 .gallery-item img {
-      height: 280px;
+      height: 235px;
+    }
+
+    .gallery-row.row-4 .gallery-item.landscape {
+      flex-grow: 1.33;
+    }
+    
+    .gallery-row.row-4 .gallery-item.portrait {
+      flex-grow: 0.75;
+    }
+
+    .gallery-row.row-4 .gallery-item img {
+      height: 235px;
     }
 
     @media (max-width: 768px) {
@@ -493,8 +517,8 @@
     <h2>Hobbies</h2>
     <ul>
       <li><span class="emoji">🎵</span><strong>Music:</strong> I have been trained in Indian classical music for 7 years. I can sing, and also play the harmonium. Jamming sessions were a regular occurrence in my college friend group, especially in the nights. The vast majority of my playlist is in Bangla, and I have been listening to the band Chandrabindoo a lot recently. I recently (as of February 2026) got a harmonica, and I am still learning.</li>
-      <li><span class="emoji">✈️</span><strong>Travel:</strong> I like to roam around. Solo traveling, family trips, getaways with friends— I've done all of them! I have toured a lot of places in India, and during my stay in Saarbrücken, I went to Paris, Strasbourg and Heidelberg. It is a bit difficult to pinpoint one trip that I loved the most, but the most beautiful scenes were probably in the city of Strasbourg, especially in the Petite-France area, with the stream of water flowing by the old Alsatian houses. The most fun was probably the beach vacation with my collegemates at Tajpur, and the most refreshing trip was to the stony shores and serene scenes of Puducherry.</li>
-      <li><span class="emoji">🖊️</span><strong>Literature:</strong> I dabble a bit into writing, although I stick to my native tongue, Bangla. I have written short stories, poems, and a theatrical adaptation as well. I am currently writing an adaptation of a video game plot into a novel. A lot of these works are collaborative, with my friend Anamitra Mukhopadhyay. Long nights in college do provide a lot of literary motivation, huh!</li>
+      <li><span class="emoji">✈️</span><strong>Travel:</strong> I like to roam around. Solo traveling, family trips, getaways with friends— I've done all of them! I have toured a lot of places in India, and during my stay in Saarbrücken, I went to Paris, Strasbourg and Heidelberg. It is a bit difficult to pinpoint one trip that I loved the most, but the most beautiful scenes were probably in the city of Strasbourg, especially in the Petite-France area, with the stream of water flowing by the old Alsatian houses. The most fun was probably the beach vacation with my collegemates at Tajpur, and the most refreshing trip was to the stony shores and serene scenes of Puducherry. Recently, I went to Rio de Janeiro for ICSE 2026, which is also a trip I enjoyed very much.</li>
+      <li><span class="emoji">🖊️</span><strong>Literature:</strong> I dabble a bit into writing, although I stick to my native tongue, Bangla. I have written short stories, poems, and a theatrical adaptation as well. I am currently writing an adaptation of a video game plot into a novel. A lot of these works are collaborative, with my friend <a class="hidden-link" href="./img/full/Ana.jpg">Anamitra Mukhopadhyay</a>. Long nights in college do provide a lot of literary motivation, huh!</li>
       <li><span class="emoji">📖</span><strong>Reading:</strong> Well, I do read a fair amount, even though it is mostly children's literature and young adult books. Most of what I read is, again, in my native tongue, Bangla. I mean, this one does not come as a surprise, especially when I have spent my childhood in Shantiniketan, the place where the great works of Rabindranath Tagore were produced.</li>
       <li><span class="emoji">🎮</span><strong>Gaming:</strong> I like playing games, but I am not a hardcore gamer. I enjoyed playing PUBG and Minecraft during the pandemic. I picked up Genshin Impact in 2023, and I only play Genshin Impact nowadays. I love to learn music from the games, and I have picked up a couple of pieces from Genshin to my harmonium.</li>
     </ul>
@@ -519,8 +543,8 @@
                 <div class="gallery-caption">an afternoon in Strasbourg</div>
               </div>
               <div class="gallery-item portrait">
-                <img src="./img/Eiffel Tower.jpg" data-full="./img/full/Eiffel Tower.jpg" alt="Eiffel Tower, and a lot of contrails" onclick="openLightbox(this)">
-                <div class="gallery-caption">Eiffel Tower, and a lot of contrails</div>
+                <img src="./img/and a lamppost.JPG" data-full="./img/full/and a lamppost.JPG" alt="...and a lamppost" onclick="openLightbox(this)">
+                <div class="gallery-caption">...and a lamppost</div>
               </div>
               <div class="gallery-item landscape">
                 <img src="./img/Atlantic.jpg" data-full="./img/full/Atlantic.jpg" alt="Atlantic at Rio" onclick="openLightbox(this)">
@@ -533,8 +557,8 @@
                 <div class="gallery-caption">Arc de Triomphe, Paris</div>
               </div>
               <div class="gallery-item portrait">
-                <img src="./img/and a lamppost.JPG" data-full="./img/full/and a lamppost.JPG" alt="...and a lamppost" onclick="openLightbox(this)">
-                <div class="gallery-caption">...and a lamppost</div>
+                <img src="./img/qutab.jpg" data-full="./img/full/qutab.jpg" alt="Qutab's silhouette" onclick="openLightbox(this)">
+                <div class="gallery-caption">Qutab's silhouette</div>
               </div>
               <div class="gallery-item landscape">
                 <img src="./img/Sunset at Gangasagar.jpg" data-full="./img/full/Sunset at Gangasagar.jpg" alt="Sun sets near the mouth of Ganga" onclick="openLightbox(this)">
@@ -547,8 +571,8 @@
                 <div class="gallery-caption">the Ill flowing by</div>
               </div>
               <div class="gallery-item portrait">
-                <img src="./img/qutab.jpg" data-full="./img/full/qutab.jpg" alt="Qutab's silhouette" onclick="openLightbox(this)">
-                <div class="gallery-caption">Qutab's silhouette</div>
+                <img src="./img/Eiffel Tower.jpg" data-full="./img/full/Eiffel Tower.jpg" alt="Eiffel Tower, and a lot of contrails" onclick="openLightbox(this)">
+                <div class="gallery-caption"> tower of contrails</div>
               </div>
               <div class="gallery-item portrait">
                 <img src="./img/web.jpg" data-full="./img/full/web.jpg" alt="X marks the spider's web" onclick="openLightbox(this)">
@@ -563,6 +587,10 @@
               <div class="gallery-item landscape">
                 <img src="./img/taj.jpg" data-full="./img/full/taj.jpg" alt="Heaven art thou, O Taj Mahal!" onclick="openLightbox(this)">
                 <div class="gallery-caption">heaven art thou, O Taj!</div> 
+              </div>
+              <div class="gallery-item portrait">
+                <img src="./img/Redeemer.jpg" data-full="./img/full/Redeemer.jpg" alt="Christo Redentor" onclick="openLightbox(this)">
+                <div class="gallery-caption">Christo Redentor</div>
               </div>
             </div>
           </div>
