@@ -165,12 +165,17 @@
 
     .overlay.active { opacity:1; visibility:visible; }
 
+    body[data-theme="light"] section a {color: var(--highlight-text-light); text-decoration: none; font-style: italic;}
+    body[data-theme="dark"] section a {color: var(--highlight-text-dark); text-decoration: none; font-style: italic;}
+
     section { max-width:800px; margin:auto; padding:1rem; text-align: justify;}
     h2 { border-bottom:2px solid var(--accent); padding-bottom:0.5rem;}
-    body[data-theme="light"] strong a {color:black; text-decoration:none;}
-    body[data-theme="dark"] strong a {color:white; text-decoration:none;}
+    body[data-theme="light"] strong a {color:black; font-style: normal;}
+    body[data-theme="dark"] strong a {color:white; font-style: normal;}
     footer { text-align:center; padding:1rem; font-size:0.9rem; opacity:0.6; }
 
+    body #publications a {font-style: normal;}
+    body #manuscripts a {font-style: normal;}
     @media (max-width: 768px) {
       nav { display:none; }
       .hamburger { display:flex; }
@@ -218,9 +223,14 @@
 
   <div class="overlay" id="overlay" aria-hidden="true"></div>
 
+  <section id="affiliation">
+    <h2>Affiliation</h2>
+    <p><strong>PhD Student</strong> under the Guidance of <span class="hltext"><a href="https://software-lab.org/people/Michael_Pradel.html">Prof. Michael Pradel</a></span> at <a href="https://cispa.de">CISPA</a> and <a href="https://www.uni-stuttgart.de/">University of Stuttgart</a></p>
+  </section>
+
   <section id="education">
     <h2>Education</h2>
-    <p><strong>Master’s and Bechelor's (Integrated) Program</strong> — Indian Institute of Technology Kharagpur, 2020-2025<br />
+    <p><strong>Master's and Bechelor's (Integrated) Program</strong> — Indian Institute of Technology Kharagpur, 2020-2025<br />
       B.Tech.-M.Tech. (Dual-Degree) in Computer Science and Engineering. <span class="hltext"> Department Rank: 2</span></p>
     <p><strong>Higher Secondary</strong> — Behala Aryya Vidyamandir, 2020. <span class="hltext"> School Rank: 1, State Rank: 14</span></p>
     <p><strong>Secondary</strong> — Behala Aryya Vidyamandir, 2018. <span class="hltext"> School Rank: 2, State Rank: 37</span></p>
@@ -261,7 +271,7 @@
 
   <section id="publications">
     <h2>Publications</h2>
-      <strong><a href="https://arxiv.org/abs/2510.22338">Leveraging Design-Aware Context in Large Language Models for Code Comment Generation</a></strong> — Aritra Mitra, Srijoni Majumdar, Anamitra Mukhopadhyay, Partha Pratim Das, Paul D Clough, Partha Pratim Chakrabarti. <em>New Ideas and Emerging Research (NIER) Track, International Conference on Software Engineering (ICSE)</em>, 2026.<br/><br/>
+      <strong><a href="https://doi.org/10.1145/3786582.3786825">Leveraging Design-Aware Context in Large Language Models for Code Comment Generation</a></strong> — Aritra Mitra, Srijoni Majumdar, Anamitra Mukhopadhyay, Partha Pratim Das, Paul D Clough, Partha Pratim Chakrabarti. <em>New Ideas and Emerging Research (NIER) Track, International Conference on Software Engineering (ICSE)</em>, 2026. [<a href="https://arxiv.org/2510.22338">pre-print</a>]<br/><br/>
       <strong><a href="https://ceur-ws.org/Vol-4054/T9-14.pdf">Exploring Usefulness of C Comments with Silver-Standard Machine Learning Models</a></strong> — Aritra Mitra. <em>Forum for Information Retrieval Evaluation (FIRE)</em>, 2024.<br/><br/>
       <strong><a href="https://ceur-ws.org/Vol-3681/T7-11.pdf">Assessing the Utility of C Comments with SVM and Naïve Bayes Classifier</a></strong> — Aritra Mitra. <em>Forum for Information Retrieval Evaluation (FIRE)</em>, 2023.
   </section>
