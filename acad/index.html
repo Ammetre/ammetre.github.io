@@ -83,6 +83,15 @@
     .toggle-text { margin-left:0.5rem; font-size:0.85rem; opacity:0; transition:opacity .3s; white-space:nowrap; }
     .theme-container:hover .toggle-text { opacity:1; }
 
+    .profile-pic {
+      float: right;
+      width: 30%;
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+      border-radius: 8px; 
+    }
+    figcaption { font-size: 0.8rem; text-align: center; margin-top: 0.5rem; color: #888; }
+
     /* hamburger now a normal inline item (no z-index tricks) */
     .hamburger {
       display: none;
@@ -174,6 +183,8 @@
     body[data-theme="dark"] strong a {color:white; font-style: normal;}
     footer { text-align:center; padding:1rem; font-size:0.9rem; opacity:0.6; }
 
+    body #affiliation a {font-style: normal;}
+    body #affiliation .hltext a {font-weight: 600;}
     body #publications a {font-style: normal;}
     body #manuscripts a {font-style: normal;}
     @media (max-width: 768px) {
@@ -225,12 +236,17 @@
 
   <section id="affiliation">
     <h2>Affiliation</h2>
-    <p><strong>PhD Student</strong> under the Guidance of <span class="hltext"><a href="https://software-lab.org/people/Michael_Pradel.html">Prof. Michael Pradel</a></span> at <a href="https://cispa.de">CISPA</a> and <a href="https://www.uni-stuttgart.de/">University of Stuttgart</a></p>
+    <figure class="profile-pic">
+      <img src="./teapot.png" alt="Aritra Mitra" />
+      <figcaption>&copy; Google</figcaption>
+    </figure>
+    <p>I am currently a <strong>PhD Student</strong> at <a href="https://cispa.de">CISPA Helmholtz Center for Information Security</a> and <a href="https://www.uni-stuttgart.de/">University of Stuttgart</a>, advised by <span class="hltext"><a href="https://software-lab.org/people/Michael_Pradel.html">Prof. Michael Pradel</a></span>. My research interests include software reliability and security, and my research focses on understanding and improving the landscape of software systems and their security.</p>
   </section>
 
   <section id="education">
     <h2>Education</h2>
-    <p><strong>Master's and Bechelor's (Integrated) Program</strong> — Indian Institute of Technology Kharagpur, 2020-2025<br />
+    <p><strong>Doctoral Candidate</strong> — Universität Stuttgart & CISPA Helmholtz Center for Information Security, 2026— </p>
+    <p><strong>Master's and Bechelor's (Integrated) Program</strong> — Indian Institute of Technology Kharagpur, 2020—2025<br />
       B.Tech.-M.Tech. (Dual-Degree) in Computer Science and Engineering. <span class="hltext"> Department Rank: 2</span></p>
     <p><strong>Higher Secondary</strong> — Behala Aryya Vidyamandir, 2020. <span class="hltext"> School Rank: 1, State Rank: 14</span></p>
     <p><strong>Secondary</strong> — Behala Aryya Vidyamandir, 2018. <span class="hltext"> School Rank: 2, State Rank: 37</span></p>
