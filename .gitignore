@@ -1,2 +1,9 @@
 prop_pad_len_hide_more_mone_mone/
 travel/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
