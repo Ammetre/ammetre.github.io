@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Map</title>
+
+    <style>
+        html, body, #map {
+            height:100%;
+            margin:0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="map"></div>
+
+
+<script>
+
+let map;
+
+
+function initMap(){
+
+    map = new google.maps.Map(
+        document.getElementById("map"),
+        {
+
+            center:{
+                lat:20,
+                lng:0
+            },
+
+            zoom:2,
+
+            // flat map
+            mapTypeId:"roadmap"
+
+        }
+    );
+
+
+    /*
+      Load your GeoJSON
+    */
+
+    map.data.loadGeoJson(
+        "gadm41_visited_1.json",
+         null,
+        function(features) {
+
+            console.log(
+                "Loaded features:",
+                features.length
+            );
+
+        }
+    );
+
+
+    /*
+      Style your regions
+    */
+
+    map.data.setStyle({
+
+        fillColor:"#0088ff",
+
+        fillOpacity:0.45,
+
+        strokeColor:"#000000",
+
+        strokeWeight:0.5
+
+    });
+
+
+    /*
+      Click regions
+    */
+
+    map.data.addListener(
+        "click",
+        function(event){
+
+            console.log(
+                event.feature
+            );
+
+        }
+    );
+
+}
+
+</script>
+
+
+<script async
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyqMZHQwTEaHclC9ZndrWmUI2k5y_baFs&callback=initMap">
+</script>
+
+
+</body>
+</html>
