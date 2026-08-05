@@ -96,9 +96,37 @@ function initMap(){
 
 </script>
 
+<script>
+async function loadGoogleMaps() {
 
-<script async
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyqMZHQwTEaHclC9ZndrWmUI2k5y_baFs&callback=initMap">
+    let region = "US"; // fallback
+
+    try {
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+
+        region = data.country_code;
+
+        // console.log("Detected region:", region);
+
+    } catch (error) {
+        console.log("IP lookup failed, using default region");
+    }
+
+
+    const script = document.createElement("script");
+
+    script.src =
+        `https://maps.googleapis.com/maps/api/js?key=AIzaSyDyqMZHQwTEaHclC9ZndrWmUI2k5y_baFs&region=${region}&callback=initMap`;
+
+    script.async = true;
+    script.defer = true;
+
+    document.head.appendChild(script);
+}
+
+
+loadGoogleMaps();
 </script>
 
 
