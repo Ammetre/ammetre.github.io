@@ -122,7 +122,7 @@ VISITED = [
 # "ES_VC",
 # "ES_EX",
 # "ES_GA",
-# "ES_PM",
+"ES_PM",
 # "ES_CN",
 # "ES_LO",
 # "ES_PV",

@@ -4,16 +4,182 @@
     <title>Travel Map</title>
 
     <style>
-        html, body, #map {
-            height:100%;
-            margin:0;
-        }
+    
+    html, body{
+        height:100%;
+        margin:0;
+    }
+
+    #map {
+        height: 95%;
+        margin: 0;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    :root {
+      --accent: #56a039;
+      --bg-light: #f8f8f8;
+      --bg-dark: #121212;
+      --text-light: #000;
+      --text-dark: #fff;
+      --header-light: #56a039;
+      --header-dark: #2c5e19;
+      --toggle-sun: radial-gradient(circle at center, #FFD700 60%, #FFA500 100%);
+      --toggle-bg-light: #20a6db;
+      --toggle-bg-dark: #2E2E2E;
+      --highlight-text-light: #4f7a3e;
+      --highlight-text-dark: #8ce26a;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--header-light);
+      color: white;
+      position: relative;
+      transition: background-color 0.4s;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      width: 28px;
+      height: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hamburger .bar {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+
+    .hamburger.active .bar1 { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active .bar2 { opacity: 0; }
+    .hamburger.active .bar3 { transform: rotate(-45deg) translate(6px, -6px); }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 66%;
+      height: 100%;
+      background-color: var(--header-light);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      transition: left 0.32s ease;
+      z-index: 1001;
+    }
+
+    body[data-theme="dark"] .mobile-nav { background-color: var(--header-dark); }
+    .mobile-nav.active { left: 0; }
+
+    .close-hamburger {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      align-items: center;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .close-hamburger .bar {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+
+    .close-hamburger.active .bar1 { transform: rotate(45deg) translate(5px, 5px); }
+    .close-hamburger.active .bar2 { opacity: 0; }
+    .close-hamburger.active .bar3 { transform: rotate(-45deg) translate(6px, -6px); }
+
+    .mobile-nav h2 { margin-top: 3rem; border-bottom:2px solid white; padding-bottom:.5rem; }
+    .mobile-nav a { color:white; text-decoration:none; font-weight:600; margin:1rem 0; padding-left: 5pt; border-left: 3pt solid transparent;}
+    .mobile-nav a.active { border-left:3px solid white; pointer-events:none; }
+
+    .overlay {
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background-color: rgba(0,0,0,0.5);
+      opacity:0; visibility:hidden; transition:opacity .3s ease;
+      z-index:1000;
+    }
+
+    .overlay.active { opacity:1; visibility:visible; }
     </style>
 
 </head>
 
 <body>
+<header>
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <div class="hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+      </div>
+      <div class="title">Aritra Mitra</div>
+    </div>
 
+    <div style="display:flex; align-items:center;">
+      <nav>
+        <a href="../pers/">Personal</a>
+        <a href="../acad/">Academic</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <div class="close-hamburger" id="closeHamburger" aria-label="Close menu" role="button" tabindex="0">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+      <div class="bar bar3"></div>
+    </div>
+
+    <h2>Aritra Mitra</h2>
+    <a href="../pers/">Personal</a>
+    <a href="../acad/">Academic</a>
+  </div>
+
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
 <div id="map"></div>
 
 
