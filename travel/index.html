@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Travel Map</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Aritra Mitra: Travel Map</title>
 
     <style>
     
@@ -144,6 +147,11 @@
     }
 
     .overlay.active { opacity:1; visibility:visible; }
+
+    @media (max-width: 768px) {
+      nav { display:none; }
+      .hamburger { display:flex; }
+    }
     </style>
 
 </head>
@@ -294,7 +302,36 @@ async function loadGoogleMaps() {
 
 loadGoogleMaps();
 </script>
+<script>
+    const hamburger = document.getElementById('hamburger');
+      const closeHamburger = document.getElementById('closeHamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('overlay');
 
+      function openMenu() {
+        hamburger.classList.add('active');
+        closeHamburger.classList.add('active');
+        mobileNav.classList.add('active');
+        overlay.classList.add('active');
+        mobileNav.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeMenu() {
+        hamburger.classList.remove('active');
+        closeHamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        overlay.classList.remove('active');
+        mobileNav.setAttribute('aria-hidden', 'true');
+      }
+
+      hamburger.addEventListener('click', () => {
+        mobileNav.classList.contains('active') ? closeMenu() : openMenu();
+      });
+      hamburger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); hamburger.click(); } });
+      closeHamburger.addEventListener('click', closeMenu);
+      closeHamburger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); closeMenu(); } });
+      overlay.addEventListener('click', closeMenu);
+</script>
 
 </body>
 </html>
