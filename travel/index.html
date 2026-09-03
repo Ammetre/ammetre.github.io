@@ -303,7 +303,23 @@ async function loadGoogleMaps() {
 loadGoogleMaps();
 </script>
 <script>
-    const hamburger = document.getElementById('hamburger');
+    function setTheme(theme) {
+      document.body.dataset.theme = theme;
+      localStorage.setItem('theme', theme);
+      document.getElementById('theme-switch').checked = (theme === 'dark');
+      document.querySelector('.toggle-text').textContent = theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+    }
+
+    function toggleTheme() {
+      const current = document.body.dataset.theme;
+      setTheme(current === 'light' ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      const saved = localStorage.getItem('theme') || 'light';
+      setTheme(saved);
+      document.getElementById('theme-switch').addEventListener('change', toggleTheme);
+
+      const hamburger = document.getElementById('hamburger');
       const closeHamburger = document.getElementById('closeHamburger');
       const mobileNav = document.getElementById('mobileNav');
       const overlay = document.getElementById('overlay');
@@ -331,6 +347,7 @@ loadGoogleMaps();
       closeHamburger.addEventListener('click', closeMenu);
       closeHamburger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); closeMenu(); } });
       overlay.addEventListener('click', closeMenu);
+    };
 </script>
 
 </body>
