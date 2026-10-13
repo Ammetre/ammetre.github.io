@@ -35,7 +35,7 @@ VISITED = [
 # "BR_SE",
 # "BR_TO",
 "DE_BW",
-# "DE_BY",
+"DE_BY",
 # "DE_BE",
 # "DE_BR",
 # "DE_HB",
