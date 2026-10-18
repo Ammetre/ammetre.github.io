@@ -128,6 +128,15 @@ VISITED = [
 # "ES_PV",
 # "ES_AS",
 # "ES_MU",
+# "AT_BU",
+# "AT_KA",
+# "AT_NO",
+# "AT_OO",
+# "AT_SZ",
+# "AT_ST",
+"AT_TR",
+# "AT_VO",
+# "AT_WI",
 ]
 
 mapping = pd.read_csv(MAP_FILE)
