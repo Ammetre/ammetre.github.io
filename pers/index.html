@@ -368,15 +368,15 @@
     /* Row-based layout for "When I shoot" section */
     /* Row 1: landscape + portrait + landscape */
     .gallery-row.row-1 .gallery-item.landscape {
-      flex-grow: 1.5;
+      flex-grow: 1.33;
     }
 
     .gallery-row.row-1 .gallery-item.portrait {
-      flex-grow: 0.6;
+      flex-grow: 0.75;
     }
  
     .gallery-row.row-1 .gallery-item img {
-      height: 230px;
+      height: 235px;
     }
 
     body[data-theme="dark"] .hidden-link {
@@ -417,6 +417,7 @@
       height: 235px;
     }
 
+    /* Row 4: landscape + landscape + portrait */
     .gallery-row.row-4 .gallery-item.landscape {
       flex-grow: 1.33;
     }
@@ -429,6 +430,18 @@
       height: 235px;
     }
 
+    /* Row 5: portrait + landscape + landscape */
+    .gallery-row.row-5 .gallery-item.landscape {
+      flex-grow: 1.33;
+    }
+    
+    .gallery-row.row-5 .gallery-item.portrait {
+      flex-grow: 0.75;
+    }
+
+    .gallery-row.row-5 .gallery-item img {
+      height: 235px;
+    }
     @media (max-width: 768px) {
       nav { display:none; }
       .hamburger { display:flex; }
@@ -603,6 +616,20 @@
               <div class="gallery-item portrait">
                 <img src="./img/Redeemer.jpg" data-full="./img/full/Redeemer.jpg" alt="Christo Redentor" onclick="openLightbox(this)">
                 <div class="gallery-caption">Christo Redentor</div>
+              </div>
+            </div>
+            <div class="gallery-row row-5">
+              <div class="gallery-item portrait">
+                <img src="./img/Watchers.jpg" data-full="./img/full/Watchers.jpg" alt="The petrified onlookers at Karlsplatz" onclick="openLightbox(this)">
+                <div class="gallery-caption">Petrified onlookers, Munich</div>
+              </div>
+              <div class="gallery-item landscape">
+                <img src="./img/Mirror.jpg" data-full="./img/full/Mirror.jpg" alt="Mirroring canal of the Ill" onclick="openLightbox(this)">
+                <div class="gallery-caption">Flows the Ill, as does time</div>
+              </div>
+              <div class="gallery-item landscape">
+                <img src="./img/Innsbruck.jpg" data-full="./img/full/Innsbruck.jpg" alt="Innsbruck" onclick="openLightbox(this)">
+                <div class="gallery-caption">Hafelekarspitze watches over Innsbruck</div> 
               </div>
             </div>
           </div>
